@@ -7,6 +7,10 @@
 //
 
 #import "CardGameViewController.h"
+
+// It is sort of unfortunate that we are importing PlayingCardDeck into this class since it is otherwise a generic card matching game Controller.
+//In other words, there’s really nothing that would prevent it from working with other Decks of other kinds of cards than PlayingCards.
+//We’ll use polymorphism next week to improve this state of affairs.
 #import "PlayingCardDeck.h"
 
 @interface CardGameViewController ()
@@ -18,12 +22,17 @@
 @implementation CardGameViewController
 
 // Override getter for the deck property (lazy instantiation)
-- (PlayingCardDeck*) deck {
+- (Deck*) deck {
     if (!_deck) {
-        _deck = [[PlayingCardDeck alloc] init];
+        _deck = [self createDeck];
     }
     
     return _deck;
+}
+
+- (Deck*) createDeck {
+    // You'll see why we factor out this method later
+    return [[PlayingCardDeck alloc] init];;
 }
 
 // Button click event handler

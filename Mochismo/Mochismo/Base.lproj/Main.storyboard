@@ -20,7 +20,7 @@
                                 <rect key="frame" x="115" y="216" width="91" height="135"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="36"/>
-                                <state key="normal" title="A♣︎" backgroundImage="BlankCard">
+                                <state key="normal" backgroundImage="stanford">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -47,7 +47,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="BlankCard" width="64" height="96"/>
+        <image name="stanford" width="64" height="96"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

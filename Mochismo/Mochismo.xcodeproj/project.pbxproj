@@ -124,17 +124,10 @@
 		3A0D145F188AF1E6003EC137 /* Mochismo */ = {
 			isa = PBXGroup;
 			children = (
-				3A0D146B188AF1E6003EC137 /* Main.storyboard */,
-				3AB41CEA188C3BDA0096B873 /* Card.h */,
-				3AB41CED188C3E310096B873 /* Deck.h */,
-				3AB41CEE188C3E310096B873 /* Deck.m */,
-				3AB41CF0188C43B40096B873 /* PlayingCard.h */,
-				3AB41CF1188C43B40096B873 /* PlayingCard.m */,
-				3AB41CF3188C49E00096B873 /* PlayingCardDeck.h */,
-				3AB41CF4188C49E00096B873 /* PlayingCardDeck.m */,
-				3AB41CEB188C3BDA0096B873 /* Card.m */,
 				3A0D146E188AF1E6003EC137 /* CardGameViewController.h */,
 				3A0D146F188AF1E6003EC137 /* CardGameViewController.m */,
+				3A0D146B188AF1E6003EC137 /* Main.storyboard */,
+				3A208EB6188D6C920046729B /* Model */,
 				3A0D1471188AF1E6003EC137 /* Images.xcassets */,
 				3A0D1460188AF1E6003EC137 /* Supporting Files */,
 			);
@@ -170,6 +163,21 @@
 				3A0D1481188AF1E7003EC137 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3A208EB6188D6C920046729B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3AB41CF0188C43B40096B873 /* PlayingCard.h */,
+				3AB41CF1188C43B40096B873 /* PlayingCard.m */,
+				3AB41CF3188C49E00096B873 /* PlayingCardDeck.h */,
+				3AB41CF4188C49E00096B873 /* PlayingCardDeck.m */,
+				3AB41CEB188C3BDA0096B873 /* Card.m */,
+				3AB41CEA188C3BDA0096B873 /* Card.h */,
+				3AB41CED188C3E310096B873 /* Deck.h */,
+				3AB41CEE188C3E310096B873 /* Deck.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

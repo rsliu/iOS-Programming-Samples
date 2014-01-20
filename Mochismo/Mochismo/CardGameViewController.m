@@ -7,26 +7,55 @@
 //
 
 #import "CardGameViewController.h"
+#import "PlayingCardDeck.h"
 
 @interface CardGameViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *label;
+@property (weak, nonatomic) IBOutlet UILabel*label;
 @property (nonatomic) int count;
+@property (strong, nonatomic) PlayingCardDeck* deck;
 @end
 
 @implementation CardGameViewController
+
+// Override getter for the deck property (lazy instantiation)
+- (PlayingCardDeck*) deck {
+    if (!_deck) {
+        _deck = [[PlayingCardDeck alloc] init];
+    }
+    
+    return _deck;
+}
+
+// Button click event handler
 - (IBAction)doFlipCard:(UIButton *)sender {
     if ([sender.currentTitle length]) {
+        // If the title of the button is greater than 0 (meaning, it is displaying a card, then
+        // flip it to the back side.
         [sender setBackgroundImage:[UIImage imageNamed:@"stanford"] forState:UIControlStateNormal];
     
         [sender setTitle:@"" forState:UIControlStateNormal];
     } else {
-        [sender setBackgroundImage:[UIImage imageNamed:@"BlankCard"] forState:UIControlStateNormal];
+        // If the title of the button is 0, then flip it to the front side (i.e. displaying the suit
+        // and the rank
         
-        [sender setTitle:@"A♣︎" forState:UIControlStateNormal];
+        // Demo part
+        //[sender setBackgroundImage:[UIImage imageNamed:@"BlankCard"] forState:UIControlStateNormal];
+        //[sender setTitle:@"A♣︎" forState:UIControlStateNormal];
+        
+        // Homework part
+        Card* card = [self.deck drawRandomCard];
+        if (card) {
+            [sender setBackgroundImage:[UIImage imageNamed:@"BlankCard"] forState:UIControlStateNormal];
+            [sender setTitle:card.contents forState:UIControlStateNormal];
+            self.count++;
+        }
     }
-    self.count++;
+    
+    // Demo part
+    //self.count++;
 }
 
+// Setter: update flip count and the UI
 - (void) setCount:(int)count {
    _count = count;
     [self.label setText:[NSString stringWithFormat:@"Flips: %d", self.count]];

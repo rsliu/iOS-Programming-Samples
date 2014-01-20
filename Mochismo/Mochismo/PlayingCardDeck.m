@@ -11,10 +11,15 @@
 
 @implementation PlayingCardDeck
 
+
+// Init a deck of card
 -(instancetype) init {
+    // Always call init of the super class first
     self = [super init];
     
+    // Always check if super class is initiated successfully
     if (self) {
+        // Add all the cards into the deck
         for (NSString* suit in [PlayingCard validSuits]) {
             for (NSUInteger rank = 1; rank < [PlayingCard maxRank]; rank++) {
                 PlayingCard* card = [[PlayingCard alloc] init];
@@ -25,6 +30,7 @@
         }
     }
     
+    // Always return self
     return self;
 }
 

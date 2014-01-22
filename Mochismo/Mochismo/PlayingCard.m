@@ -10,6 +10,7 @@
 
 @implementation PlayingCard
 
+
 // Getter: return the contents (rank and suit) of a playing card
 - (NSString*) contents {
     NSArray* rankStrings = [PlayingCard rankStrings];

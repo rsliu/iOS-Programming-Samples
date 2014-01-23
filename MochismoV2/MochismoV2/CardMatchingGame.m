@@ -11,6 +11,9 @@
 @interface CardMatchingGame()
 @property (strong, nonatomic) NSMutableArray* cards;
 @property (nonatomic, readwrite) NSUInteger score; // However, we need to use "readwrite" keyword to make sure the controller itself can do read/write
+
+// Assignment 2
+@property (nonatomic) NSUInteger mode;
 @end
 
 @implementation CardMatchingGame

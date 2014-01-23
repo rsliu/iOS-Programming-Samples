@@ -55,6 +55,7 @@
         UIImage* image = [UIImage imageNamed:((card.isChosen)? @"BlankCard":@"stanford")];
         [cardButton setBackgroundImage:image forState:UIControlStateNormal];
         cardButton.enabled = !card.isMatched;
+        [self.label setText:[NSString stringWithFormat:@"Score: %d", self.game.score]];
     }
 }
 @end

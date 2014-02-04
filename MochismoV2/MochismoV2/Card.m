@@ -10,11 +10,13 @@
 
 @implementation Card
 
-- (int) match:(Card *)card {
+- (int) match:(NSArray *)otherCards {
     int score = 0;
     
-    if ([self.contents isEqualToString:card.contents]) {
-        score = 1;
+    for (Card* card in otherCards) {
+        if ([self.contents isEqualToString:card.contents]) {
+            score = 1;
+        }
     }
     return score;
 }

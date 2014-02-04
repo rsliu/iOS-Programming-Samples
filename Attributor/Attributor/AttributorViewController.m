@@ -50,7 +50,10 @@
     // Let's tune in radio in viewWillAppear
     [super viewWillAppear:animated];
     [self usePreferredFonts]; // Make sure we are using the preferred fonts after reappearing
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferredFontsChanged:) name:UIContentSizeCategoryDidChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                selector:@selector(preferredFontsChanged:)
+                name:UIContentSizeCategoryDidChangeNotification
+                object:nil]; // nil means the system
 }
 
 -(void) preferredFontsChanged:(NSNotification*) notification {
@@ -64,6 +67,10 @@
 
 -(void) viewWillDisappear:(BOOL)animated {
     // Remove observer in viewWillDisapper
+    // Needs to tune out of radio station when the view disappear because
+    // radio stations keep an unsafe retained pointer to the view and will try
+    // to send you a notification when the view is away. If that happens, it will
+    // crash your app. Why unsafe retained pointer? It's for backward compatibility reasons
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIContentSizeCategoryDidChangeNotification object:nil];
 }

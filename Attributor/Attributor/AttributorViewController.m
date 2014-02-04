@@ -39,7 +39,9 @@
     
     // Add outline to the title
     NSMutableAttributedString *title = [[NSMutableAttributedString alloc] initWithString:self.outlineButton.currentTitle ];
-    [title setAttributes: @{NSStrokeWidthAttributeName: @-3, NSStrokeColorAttributeName: [UIColor blackColor]} range:NSMakeRange(0, [title length])];
+    [title setAttributes: @{NSStrokeWidthAttributeName: @3,
+                    NSStrokeColorAttributeName: self.outlineButton.tintColor}
+                    range:NSMakeRange(0, [title length])];
     [self.outlineButton setAttributedTitle:title forState:UIControlStateNormal]; // Change font to bold to make the outline more obvious
 }
 

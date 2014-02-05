@@ -40,8 +40,11 @@
 
     self.playingCardView.rank = 13;
     self.playingCardView.suit = @"♥";
-    [self.playingCardView addGestureRecognizer:[[UIPinchGestureRecognizer alloc] initWithTarget:self.playingCardView
-                                                                                         action:@selector(pinch:)]];
+    
+    SEL pinchSel = sel_registerName("pinch:");
+    [self.playingCardView addGestureRecognizer:[[UIPinchGestureRecognizer alloc]
+                                                initWithTarget:self.playingCardView
+                                                action:pinchSel]];
 }
 
 - (void)didReceiveMemoryWarning

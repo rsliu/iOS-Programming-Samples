@@ -58,4 +58,14 @@
         [self.label setText:[NSString stringWithFormat:@"Score: %d", self.game.score]];
     }
 }
+
+// Lab #2 solution
+- (IBAction)restartGame:(UIButton *)sender {
+    self.game = nil;
+    [self updateUI];
+}
+
+- (IBAction)modeChanged:(UISwitch *)sender {
+    self.game.matching3Cards = !self.game.matching3Cards;
+}
 @end

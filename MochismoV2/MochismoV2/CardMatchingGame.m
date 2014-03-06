@@ -59,6 +59,11 @@
 }
 
 // Step 3. Action when the user chooses a card. Note, this should not involve any UI
+static const int MATCH_BONUS = 4;
+static const int MISMATCH_PENALTY = 2;
+static const int COST_TO_CHOOSE = 1;
+
+/* Demo
 - (void) chooseCardAtIndex:(NSUInteger) index {
     // Only react to non-matched cards
     Card* card = [self cardAtIndex:index];
@@ -71,7 +76,6 @@
                 card.chosen = NO;
             } else {
                 // Otherwise, we need to match it with other chosen cards
-                
                 for(Card* otherCard in self.cards) {
                     if (!otherCard.isMatched && otherCard.isChosen) {
                         // Match method of the card class takes an array
@@ -79,12 +83,12 @@
                         // Since out game is only a 2-card matching game, we just create an array with one card in it
                         int matchScore = [card match:@[otherCard]];
                         if (matchScore) {
-                            self.score++;
+                            self.score += MATCH_BONUS;
                             // Set matched flag to YES for both cards
                             otherCard.matched = YES;
                             card.matched = YES;
                         } else {
-                            self.score--;
+                            self.score -= MISMATCH_PENALTY;
                             // Flip the other card that is not a match
                             otherCard.chosen = NO;
                         }
@@ -92,7 +96,56 @@
                     }
                 }
                 // Cost to choose (to prevent from cheating)
-                self.score--;
+                self.score -= COST_TO_CHOOSE;
+                
+                // Choose the card
+                card.chosen = YES;
+            }
+        }
+    }
+}
+*/
+
+// Lab 2 solution
+- (void) chooseCardAtIndex:(NSUInteger) index {
+    Card* card = [self cardAtIndex:index];
+    
+    if (card) {
+        if (!card.isMatched) {
+            if (card.isChosen) {
+                card.chosen = NO;
+            } else {
+                NSMutableArray* chosenCards = [[NSMutableArray alloc] init];
+                
+                for(Card* otherCard in self.cards) {
+                    if (!otherCard.isMatched && otherCard.isChosen) {
+                        [chosenCards addObject:otherCard];
+                        
+                        if (!self.isMatching3Cards || [chosenCards count] >= 2) break;
+                    }
+                }
+                
+                // Calculate score
+                if (([chosenCards count] > 0 && !self.isMatching3Cards) ||
+                    ([chosenCards count] > 1 && self.isMatching3Cards) ) {
+                    int matchScore = [card match:chosenCards];
+                    if (matchScore) {
+                        self.score += MATCH_BONUS * ((self.isMatching3Cards)? 2:1);
+                        // Set matched flag to YES for the chosen cards
+                        for (Card* matchedCard in chosenCards) {
+                            matchedCard.matched = YES;
+                        }
+                        card.matched = YES;
+                    } else {
+                        self.score -= MISMATCH_PENALTY;
+                        for (Card* misMatchedCard in chosenCards) {
+                            misMatchedCard.chosen = NO;
+                        }
+                    }
+                }
+                
+                // Cost to choose (to prevent from cheating)
+                self.score -= COST_TO_CHOOSE;
                 
                 // Choose the card
                 card.chosen = YES;
@@ -101,4 +154,9 @@
     }
 }
 
+
+- (BOOL) isMatching3Cards
+{
+    return _matching3Cards;
+}
 @end

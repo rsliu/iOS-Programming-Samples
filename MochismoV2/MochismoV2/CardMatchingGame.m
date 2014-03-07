@@ -115,22 +115,25 @@ static const int COST_TO_CHOOSE = 1;
             if (card.isChosen) {
                 card.chosen = NO;
             } else {
-                NSMutableArray* chosenCards = [[NSMutableArray alloc] init];
+                NSMutableArray* chosenCards = [[NSMutableArray alloc] initWithObjects:card, nil];
                 
                 for(Card* otherCard in self.cards) {
                     if (!otherCard.isMatched && otherCard.isChosen) {
                         [chosenCards addObject:otherCard];
-                        
-                        if (!self.isMatching3Cards || [chosenCards count] >= 2) break;
                     }
                 }
                 
                 // Calculate score
-                if (([chosenCards count] > 0 && !self.isMatching3Cards) ||
-                    ([chosenCards count] > 1 && self.isMatching3Cards) ) {
-                    int matchScore = [card match:chosenCards];
+                if ([chosenCards count] == 3 || !self.isMatching3Cards) {
+                    int matchScore = 0;
+                    
+                    for (int i = 0; i < [chosenCards count]; i++) {
+                        Card* cardToMatch = [chosenCards objectAtIndex:i];
+                        matchScore += [cardToMatch match:[chosenCards subarrayWithRange:NSMakeRange(i+1, [chosenCards count] - i - 1)]];
+                    }
+                    
                     if (matchScore) {
-                        self.score += MATCH_BONUS * ((self.isMatching3Cards)? 2:1);
+                        self.score += MATCH_BONUS * matchScore;
                         // Set matched flag to YES for the chosen cards
                         for (Card* matchedCard in chosenCards) {
                             matchedCard.matched = YES;
@@ -152,11 +155,5 @@ static const int COST_TO_CHOOSE = 1;
             }
         }
     }
-}
-
-
-- (BOOL) isMatching3Cards
-{
-    return _matching3Cards;
 }
 @end

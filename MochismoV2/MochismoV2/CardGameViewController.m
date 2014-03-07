@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *label; // label for displaying score
 @property (strong, nonatomic) CardMatchingGame* game; // need a property for the model
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
+@property (weak, nonatomic) IBOutlet UISwitch *modeSwitcher;
 @end
 
 @implementation CardGameViewController
@@ -43,6 +44,9 @@
     [self.game chooseCardAtIndex:choosenIndex];
     // Update the UI according to the new state of the model
     [self updateUI];
+    
+    // Solution
+    self.modeSwitcher.enabled= NO;
 }
 
 -(void) updateUI {
@@ -63,6 +67,7 @@
 - (IBAction)restartGame:(UIButton *)sender {
     self.game = nil;
     [self updateUI];
+    self.modeSwitcher.enabled= YES;
 }
 
 - (IBAction)modeChanged:(UISwitch *)sender {

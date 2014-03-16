@@ -18,6 +18,14 @@
 
 @implementation CardMatchingGame
 
+// Lab #3
+- (NSMutableArray*) history {
+    if (!_history) {
+        _history = [[NSMutableArray alloc] init];
+    }
+    return _history;
+}
+
 // Override getter for the deck property (lazy instantiation)
 - (NSMutableArray*) cards {
     if (!_cards) {
@@ -28,7 +36,7 @@
 }
 
 // Step 1. Dedicated initializer
-- (instancetype) initWithCardCount:(int) count usingDeck:(Deck*) deck {
+- (instancetype) initWithCardCount:(NSUInteger) count usingDeck:(Deck*) deck {
     // Again, always call the init of the super class first
     self = [super init];
     

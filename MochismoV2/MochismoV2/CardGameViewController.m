@@ -13,11 +13,14 @@
 //We’ll use polymorphism next week to improve this state of affairs.
 #import "PlayingCardDeck.h"
 #import "CardMatchingGame.h"
+#import "PlayingCard.h"
 
 @interface CardGameViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *label; // label for displaying score
 @property (strong, nonatomic) CardMatchingGame* game; // need a property for the model
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
+@property (weak, nonatomic) IBOutlet UILabel *historyLabel;
+@property (weak, nonatomic) IBOutlet UISlider *slider;
 @property (weak, nonatomic) IBOutlet UISwitch *modeSwitcher;
 @end
 
@@ -39,7 +42,7 @@
 // Button click event handler
 - (IBAction)doFlipCard:(UIButton *)sender {
     // Find out the index of the button being clicked
-    int choosenIndex = [self.cardButtons indexOfObject:sender];
+    NSUInteger choosenIndex = [self.cardButtons indexOfObject:sender];
     // Call the model to choose the card at that index
     [self.game chooseCardAtIndex:choosenIndex];
     // Update the UI according to the new state of the model
@@ -54,12 +57,19 @@
         // Find out card index
         int cardIndex = [self.cardButtons indexOfObject:cardButton];
         // Get the card object
-        Card* card = [self.game cardAtIndex:cardIndex];
-        [cardButton setTitle:((card.isChosen)? card.contents:@"") forState:UIControlStateNormal];
-        UIImage* image = [UIImage imageNamed:((card.isChosen)? @"BlankCard":@"stanford")];
-        [cardButton setBackgroundImage:image forState:UIControlStateNormal];
-        cardButton.enabled = !card.isMatched;
-        [self.label setText:[NSString stringWithFormat:@"Score: %d", self.game.score]];
+        //Card* card = [self.game cardAtIndex:cardIndex];
+        //[cardButton setTitle:((card.isChosen)? card.contents:@"") forState:UIControlStateNormal];
+        // Lab #3
+        id obj = [self.game cardAtIndex:cardIndex];
+        if ([obj isKindOfClass:[PlayingCard class]]) {
+            PlayingCard* card = (PlayingCard*) obj;
+            [cardButton setAttributedTitle:((card.isChosen)? card.attributedContents:@"") forState:UIControlStateNormal];
+        
+            UIImage* image = [UIImage imageNamed:((card.isChosen)? @"BlankCard":@"stanford")];
+            [cardButton setBackgroundImage:image forState:UIControlStateNormal];
+            cardButton.enabled = !card.isMatched;
+        }
+        [self.label setText:[NSString stringWithFormat:@"Score: %d", (int)self.game.score]];
     }
 }
 
@@ -72,5 +82,8 @@
 
 - (IBAction)modeChanged:(UISwitch *)sender {
     self.game.matching3Cards = !self.game.matching3Cards;
+}
+
+- (IBAction)sliderValueChanged:(UISlider *)sender {
 }
 @end

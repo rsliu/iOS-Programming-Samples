@@ -34,7 +34,7 @@
 
 // Class method for creating/returing valid suits
 +(NSArray*) validSuits {
-    return @[@"♠︎", @"♣︎", @"♥︎", @"♦︎"];
+    return @[@"♠︎", @"♣︎", @"♥", @"♦︎"];
 }
 
 // Class method for creating/returning valid ranks

@@ -55,7 +55,7 @@
 -(void) updateUI {
     for(UIButton* cardButton in self.cardButtons) {
         // Find out card index
-        int cardIndex = [self.cardButtons indexOfObject:cardButton];
+        NSUInteger cardIndex = [self.cardButtons indexOfObject:cardButton];
         // Get the card object
         //Card* card = [self.game cardAtIndex:cardIndex];
         //[cardButton setTitle:((card.isChosen)? card.contents:@"") forState:UIControlStateNormal];
@@ -63,7 +63,7 @@
         id obj = [self.game cardAtIndex:cardIndex];
         if ([obj isKindOfClass:[PlayingCard class]]) {
             PlayingCard* card = (PlayingCard*) obj;
-            [cardButton setAttributedTitle:((card.isChosen)? card.attributedContents:@"") forState:UIControlStateNormal];
+            [cardButton setAttributedTitle:((card.isChosen)? card.attributedContents:[[NSAttributedString alloc] initWithString:@""]) forState:UIControlStateNormal];
         
             UIImage* image = [UIImage imageNamed:((card.isChosen)? @"BlankCard":@"stanford")];
             [cardButton setBackgroundImage:image forState:UIControlStateNormal];
@@ -71,9 +71,14 @@
         }
         [self.label setText:[NSString stringWithFormat:@"Score: %d", (int)self.game.score]];
     }
+    
+    // ### Lab 3 ###
+    self.slider.maximumValue = [self.game.history count];
+    [self.slider setValue: self.slider.maximumValue animated:true];
+    [self updateHistoryLabel:(self.slider.maximumValue - 1)];
 }
 
-// Lab #2 solution
+// ### Lab 2 ###
 - (IBAction)restartGame:(UIButton *)sender {
     self.game = nil;
     [self updateUI];
@@ -84,6 +89,13 @@
     self.game.matching3Cards = !self.game.matching3Cards;
 }
 
+// ### Lab 3 ###
+- (void) updateHistoryLabel:(int) step {
+    NSAttributedString* messageToDisplay = [self.game.history objectAtIndex:step];
+    [self.historyLabel setAttributedText:messageToDisplay];
+}
+
 - (IBAction)sliderValueChanged:(UISlider *)sender {
+    [self updateHistoryLabel:(int) sender.value - 1];
 }
 @end

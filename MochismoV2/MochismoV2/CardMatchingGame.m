@@ -11,14 +11,21 @@
 @interface CardMatchingGame()
 @property (strong, nonatomic) NSMutableArray* cards;
 @property (nonatomic, readwrite) NSUInteger score; // However, we need to use "readwrite" keyword to make sure the controller itself can do read/write
-
-// Assignment 2
-@property (nonatomic) NSUInteger mode;
+@property (nonatomic) NSUInteger mode; // Lab 2
+@property (strong, nonatomic) NSMutableArray* chosenCards; // Lab 3
 @end
 
 @implementation CardMatchingGame
 
 // Lab #3
+- (NSMutableArray*) chosenCards {
+    if (!_chosenCards) {
+        _chosenCards = [[NSMutableArray alloc] init];
+    }
+    
+    return _chosenCards;
+}
+
 - (NSMutableArray*) history {
     if (!_history) {
         _history = [[NSMutableArray alloc] init];
@@ -117,22 +124,37 @@ static const int COST_TO_CHOOSE = 1;
 // Lab 2 solution
 - (void) chooseCardAtIndex:(NSUInteger) index {
     Card* card = [self cardAtIndex:index];
+    NSMutableAttributedString* step = [[NSMutableAttributedString alloc] init]; // Lab 3
+    NSMutableArray* chosenCards = [[NSMutableArray alloc] initWithObjects:card, nil];
+
     
     if (card) {
         if (!card.isMatched) {
             if (card.isChosen) {
                 card.chosen = NO;
+                
+                // ### Lab 3 ###
+                [step appendAttributedString:card.attributedContents];
+                [self.history addObject:step];
+                for(Card* otherCard in self.cards) {
+                    if (!otherCard.isMatched && otherCard.isChosen) {
+                        [chosenCards addObject:otherCard];
+                        [step appendAttributedString:otherCard.attributedContents];
+                    }
+                }
+                // ###
             } else {
-                NSMutableArray* chosenCards = [[NSMutableArray alloc] initWithObjects:card, nil];
+                NSString* matchResult;
                 
                 for(Card* otherCard in self.cards) {
                     if (!otherCard.isMatched && otherCard.isChosen) {
                         [chosenCards addObject:otherCard];
+                        [step appendAttributedString:otherCard.attributedContents]; // Lab 3
                     }
                 }
                 
                 // Calculate score
-                if ([chosenCards count] == 3 || !self.isMatching3Cards) {
+                if ([chosenCards count] == 3 || (!self.isMatching3Cards && [chosenCards count] == 2)) {
                     int matchScore = 0;
                     
                     for (int i = 0; i < [chosenCards count]; i++) {
@@ -147,12 +169,18 @@ static const int COST_TO_CHOOSE = 1;
                             matchedCard.matched = YES;
                         }
                         card.matched = YES;
+                        matchResult = @" is a match!";
                     } else {
                         self.score -= MISMATCH_PENALTY;
                         for (Card* misMatchedCard in chosenCards) {
                             misMatchedCard.chosen = NO;
                         }
+                        matchResult = @" do not match!";
                     }
+                }
+                
+                if (matchResult) {
+                    [step appendAttributedString:[[NSAttributedString alloc] initWithString:matchResult attributes:@{NSForegroundColorAttributeName:[UIColor blackColor]}]];
                 }
                 
                 // Cost to choose (to prevent from cheating)
@@ -161,6 +189,7 @@ static const int COST_TO_CHOOSE = 1;
                 // Choose the card
                 card.chosen = YES;
             }
+            [self.history addObject:step]; // Lab 3
         }
     }
 }

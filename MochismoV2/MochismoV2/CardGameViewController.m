@@ -90,9 +90,17 @@
 }
 
 // ### Lab 3 ###
-- (void) updateHistoryLabel:(int) step {
-    NSAttributedString* messageToDisplay = [self.game.history objectAtIndex:step];
-    [self.historyLabel setAttributedText:messageToDisplay];
+- (void) updateHistoryLabel:(int) recordIndex {
+    if (recordIndex >= 0) {
+        NSMutableAttributedString* messageToDisplay = [[NSMutableAttributedString alloc] initWithAttributedString:[self.game.history objectAtIndex:recordIndex]];
+        // Grey out historical records
+        if (recordIndex < self.slider.maximumValue - 1) {
+            [messageToDisplay addAttribute:NSForegroundColorAttributeName value:[UIColor grayColor] range:NSMakeRange(0, messageToDisplay.length)];
+        }
+        [self.historyLabel setAttributedText:messageToDisplay];
+    } else {
+        [self.historyLabel setText:@""];
+    }
 }
 
 - (IBAction)sliderValueChanged:(UISlider *)sender {

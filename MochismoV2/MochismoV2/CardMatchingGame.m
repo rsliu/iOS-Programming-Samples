@@ -12,21 +12,13 @@
 @property (strong, nonatomic) NSMutableArray* cards;
 @property (nonatomic, readwrite) NSUInteger score; // However, we need to use "readwrite" keyword to make sure the controller itself can do read/write
 @property (nonatomic) NSUInteger mode; // Lab 2
-@property (strong, nonatomic) NSMutableArray* chosenCards; // Lab 3
 @end
 
 @implementation CardMatchingGame
 
 // Lab #3
-- (NSMutableArray*) chosenCards {
-    if (!_chosenCards) {
-        _chosenCards = [[NSMutableArray alloc] init];
-    }
-    
-    return _chosenCards;
-}
-
-- (NSMutableArray*) history {
+- (NSMutableArray*) history
+{
     if (!_history) {
         _history = [[NSMutableArray alloc] init];
     }
@@ -122,56 +114,68 @@ static const int COST_TO_CHOOSE = 1;
 */
 
 // Lab 2 & 3 solution
-- (void) chooseCardAtIndex:(NSUInteger) index {
+- (void) chooseCardAtIndex:(NSUInteger) index
+{
     Card* card = [self cardAtIndex:index];
-    NSMutableAttributedString* step = [[NSMutableAttributedString alloc] init]; // Lab 3
-    NSMutableArray* chosenCards = [[NSMutableArray alloc] initWithObjects:card, nil];
-
+    NSString* matchResult;
     
     if (card) {
         if (!card.isMatched) {
+            // Place all chosen cards in an array
+            NSMutableArray* chosenCards = [[NSMutableArray alloc] init];
+            
+            for(Card* otherCard in self.cards) {
+                if (!otherCard.isMatched && otherCard.isChosen) {
+                    [chosenCards addObject:otherCard];
+                }
+            }
+            
             if (card.isChosen) {
                 card.chosen = NO;
-                [step appendAttributedString:card.attributedContents];
-                [self.chosenCards removeObject:card];
+                [chosenCards removeObject:card];
             } else {
-                // Cost to choose (to prevent from cheating)
-                self.score -= COST_TO_CHOOSE;
+                [chosenCards addObject:card];
                 
-                // Choose the card
-                card.chosen = YES;
-                [self.chosenCards addObject:card];
-                
-                
-                // Calculate score
                 if ([chosenCards count] == 3 || (!self.isMatching3Cards && [chosenCards count] == 2)) {
                     int matchScore = 0;
                     
-                    for (int i = 0; i < [chosenCards count]; i++) {
+                    for(int i = 0; i < [chosenCards count]; i++) {
                         Card* cardToMatch = [chosenCards objectAtIndex:i];
                         matchScore += [cardToMatch match:[chosenCards subarrayWithRange:NSMakeRange(i+1, [chosenCards count] - i - 1)]];
                     }
                     
                     if (matchScore) {
                         self.score += MATCH_BONUS * matchScore;
-                        // Set matched flag to YES for the chosen cards
-                        for (Card* matchedCard in chosenCards) {
-                            matchedCard.matched = YES;
-                        }
-                        card.matched = YES;
+                        [chosenCards setValue:[NSNumber numberWithBool:YES] forKey:@"matched"];
+                        matchResult = [[NSString alloc] initWithFormat:@" mached for %d points!", MATCH_BONUS * matchScore];
                     } else {
                         self.score -= MISMATCH_PENALTY;
-                        for (Card* misMatchedCard in chosenCards) {
-                            misMatchedCard.chosen = NO;
-                        }
+                        [chosenCards setValue:[NSNumber numberWithBool:NO] forKey:@"chosen"];
+                        matchResult = [[NSString alloc] initWithFormat:@" do not match! %d points pentaly!", MISMATCH_PENALTY];
                     }
                 }
+                
+                self.score -= COST_TO_CHOOSE;
+                card.chosen = YES;
             }
             
-            [step appendAttributedString:[[NSAttributedString alloc] initWithString:matchResult attributes:@{NSForegroundColorAttributeName:[UIColor blackColor]}]];
-
-            [self.history addObject:step]; // Lab 3
+            [self updateHistoryUsingCards:chosenCards WithResult:matchResult];
         }
     }
+}
+
+- (void) updateHistoryUsingCards:(NSArray*)cards WithResult:(NSString*) result
+{
+    NSMutableAttributedString* record = [[NSMutableAttributedString alloc] init];
+    
+    for(Card* card in cards) {
+        [record appendAttributedString:card.attributedContents];
+    }
+    
+    if (result) {
+        [record appendAttributedString:[[NSAttributedString alloc] initWithString:result attributes:@{NSForegroundColorAttributeName: [UIColor blackColor]}]];
+    }
+    
+    [self.history addObject:record];
 }
 @end

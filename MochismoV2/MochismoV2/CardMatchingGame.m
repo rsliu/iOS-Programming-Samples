@@ -121,7 +121,7 @@ static const int COST_TO_CHOOSE = 1;
 }
 */
 
-// Lab 2 solution
+// Lab 2 & 3 solution
 - (void) chooseCardAtIndex:(NSUInteger) index {
     Card* card = [self cardAtIndex:index];
     NSMutableAttributedString* step = [[NSMutableAttributedString alloc] init]; // Lab 3
@@ -132,26 +132,16 @@ static const int COST_TO_CHOOSE = 1;
         if (!card.isMatched) {
             if (card.isChosen) {
                 card.chosen = NO;
-                
-                // ### Lab 3 ###
                 [step appendAttributedString:card.attributedContents];
-                [self.history addObject:step];
-                for(Card* otherCard in self.cards) {
-                    if (!otherCard.isMatched && otherCard.isChosen) {
-                        [chosenCards addObject:otherCard];
-                        [step appendAttributedString:otherCard.attributedContents];
-                    }
-                }
-                // ###
+                [self.chosenCards removeObject:card];
             } else {
-                NSString* matchResult;
+                // Cost to choose (to prevent from cheating)
+                self.score -= COST_TO_CHOOSE;
                 
-                for(Card* otherCard in self.cards) {
-                    if (!otherCard.isMatched && otherCard.isChosen) {
-                        [chosenCards addObject:otherCard];
-                        [step appendAttributedString:otherCard.attributedContents]; // Lab 3
-                    }
-                }
+                // Choose the card
+                card.chosen = YES;
+                [self.chosenCards addObject:card];
+                
                 
                 // Calculate score
                 if ([chosenCards count] == 3 || (!self.isMatching3Cards && [chosenCards count] == 2)) {
@@ -169,26 +159,17 @@ static const int COST_TO_CHOOSE = 1;
                             matchedCard.matched = YES;
                         }
                         card.matched = YES;
-                        matchResult = @" is a match!";
                     } else {
                         self.score -= MISMATCH_PENALTY;
                         for (Card* misMatchedCard in chosenCards) {
                             misMatchedCard.chosen = NO;
                         }
-                        matchResult = @" do not match!";
                     }
                 }
-                
-                if (matchResult) {
-                    [step appendAttributedString:[[NSAttributedString alloc] initWithString:matchResult attributes:@{NSForegroundColorAttributeName:[UIColor blackColor]}]];
-                }
-                
-                // Cost to choose (to prevent from cheating)
-                self.score -= COST_TO_CHOOSE;
-                
-                // Choose the card
-                card.chosen = YES;
             }
+            
+            [step appendAttributedString:[[NSAttributedString alloc] initWithString:matchResult attributes:@{NSForegroundColorAttributeName:[UIColor blackColor]}]];
+
             [self.history addObject:step]; // Lab 3
         }
     }

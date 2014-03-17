@@ -92,11 +92,10 @@
 // ### Lab 3 ###
 - (void) updateHistoryLabel:(int) recordIndex {
     if (recordIndex >= 0) {
-        NSMutableAttributedString* messageToDisplay = [[NSMutableAttributedString alloc] initWithAttributedString:[self.game.history objectAtIndex:recordIndex]];
+        NSAttributedString* messageToDisplay = [self.game.history objectAtIndex:recordIndex];
         // Grey out historical records
-        if (recordIndex < self.slider.maximumValue - 1) {
-            [messageToDisplay addAttribute:NSForegroundColorAttributeName value:[UIColor grayColor] range:NSMakeRange(0, messageToDisplay.length)];
-        }
+        CGFloat alpha = (recordIndex < self.slider.maximumValue - 1)? 0.5:1.0;
+        self.historyLabel.alpha = alpha;
         [self.historyLabel setAttributedText:messageToDisplay];
     } else {
         [self.historyLabel setText:@""];

@@ -67,7 +67,7 @@
             if (card.isChosen) {
                 [cardButton setAttributedTitle:card.attributedContents forState:UIControlStateNormal];
             } else {
-                [cardButton setTitle:@"" forState:UIControlStateNormal];
+                [cardButton setAttributedTitle:[[NSAttributedString alloc] init] forState:UIControlStateNormal];
             }
             
             UIImage* image = [UIImage imageNamed:((card.isChosen)? @"BlankCard":@"stanford")];

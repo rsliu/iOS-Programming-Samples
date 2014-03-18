@@ -140,14 +140,15 @@ static const int COST_TO_CHOOSE = 1;
                     int matchScore = 0;
                     
                     for(int i = 0; i < [chosenCards count]; i++) {
-                        Card* cardToMatch = [chosenCards objectAtIndex:i];
-                        matchScore += [cardToMatch match:[chosenCards subarrayWithRange:NSMakeRange(i+1, [chosenCards count] - i - 1)]];
+                        Card* card = [chosenCards objectAtIndex:i];
+                        NSArray* cardsToMatch = [chosenCards subarrayWithRange:NSMakeRange(i+1, [chosenCards count] - i - 1)];
+                        matchScore += [card match:cardsToMatch];
                     }
                     
                     if (matchScore) {
                         self.score += MATCH_BONUS * matchScore;
                         [chosenCards setValue:[NSNumber numberWithBool:YES] forKey:@"matched"];
-                        matchResult = [[NSString alloc] initWithFormat:@" mached for %d points!", MATCH_BONUS * matchScore];
+                        matchResult = [[NSString alloc] initWithFormat:@" matched for %d points!", MATCH_BONUS * matchScore];
                     } else {
                         self.score -= MISMATCH_PENALTY;
                         [chosenCards setValue:[NSNumber numberWithBool:NO] forKey:@"chosen"];

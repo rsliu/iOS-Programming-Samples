@@ -63,8 +63,13 @@
         id obj = [self.game cardAtIndex:cardIndex];
         if ([obj isKindOfClass:[PlayingCard class]]) {
             PlayingCard* card = (PlayingCard*) obj;
-            [cardButton setAttributedTitle:((card.isChosen)? card.attributedContents:[[NSAttributedString alloc] initWithString:@""]) forState:UIControlStateNormal];
-        
+            
+            if (card.isChosen) {
+                [cardButton setAttributedTitle:card.attributedContents forState:UIControlStateNormal];
+            } else {
+                [cardButton setTitle:@"" forState:UIControlStateNormal];
+            }
+            
             UIImage* image = [UIImage imageNamed:((card.isChosen)? @"BlankCard":@"stanford")];
             [cardButton setBackgroundImage:image forState:UIControlStateNormal];
             cardButton.enabled = !card.isMatched;
@@ -94,8 +99,7 @@
     if (recordIndex >= 0) {
         NSAttributedString* messageToDisplay = [self.game.history objectAtIndex:recordIndex];
         // Grey out historical records
-        CGFloat alpha = (recordIndex < self.slider.maximumValue - 1)? 0.5:1.0;
-        self.historyLabel.alpha = alpha;
+        self.historyLabel.alpha = (recordIndex < self.slider.maximumValue - 1)? 0.5:1.0;
         [self.historyLabel setAttributedText:messageToDisplay];
     } else {
         [self.historyLabel setText:@""];

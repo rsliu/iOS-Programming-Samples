@@ -16,14 +16,6 @@
 
 @implementation CardMatchingGame
 
-// Lab #3
-- (NSMutableArray*) history
-{
-    if (!_history) {
-        _history = [[NSMutableArray alloc] init];
-    }
-    return _history;
-}
 
 // Override getter for the deck property (lazy instantiation)
 - (NSMutableArray*) cards {
@@ -113,7 +105,7 @@ static const int COST_TO_CHOOSE = 1;
 }
 */
 
-// Lab 2 & 3 solution
+// Lab 2 solution
 - (void) chooseCardAtIndex:(NSUInteger) index
 {
     Card* card = [self cardAtIndex:index];
@@ -136,7 +128,7 @@ static const int COST_TO_CHOOSE = 1;
             } else {
                 [chosenCards addObject:card];
                 
-                if ([chosenCards count] == 3 || (!self.isMatching3Cards && [chosenCards count] == 2)) {
+                if ([chosenCards count] == self.matchingCards) {
                     int matchScore = 0;
                     
                     for(int i = 0; i < [chosenCards count]; i++) {
@@ -148,35 +140,16 @@ static const int COST_TO_CHOOSE = 1;
                     if (matchScore) {
                         self.score += MATCH_BONUS * matchScore;
                         [chosenCards setValue:[NSNumber numberWithBool:YES] forKey:@"matched"];
-                        matchResult = [[NSString alloc] initWithFormat:@" matched for %d points!", MATCH_BONUS * matchScore];
                     } else {
                         self.score -= MISMATCH_PENALTY;
                         [chosenCards setValue:[NSNumber numberWithBool:NO] forKey:@"chosen"];
-                        matchResult = [[NSString alloc] initWithFormat:@" do not match! %d points pentaly!", MISMATCH_PENALTY];
                     }
                 }
                 
                 self.score -= COST_TO_CHOOSE;
                 card.chosen = YES;
             }
-            
-            [self updateHistoryUsingCards:chosenCards WithResult:matchResult];
         }
     }
-}
-
-- (void) updateHistoryUsingCards:(NSArray*)cards WithResult:(NSString*) result
-{
-    NSMutableAttributedString* record = [[NSMutableAttributedString alloc] init];
-    
-    for(Card* card in cards) {
-        [record appendAttributedString:card.attributedContents];
-    }
-    
-    if (result) {
-        [record appendAttributedString:[[NSAttributedString alloc] initWithString:result attributes:@{NSForegroundColorAttributeName: [UIColor blackColor]}]];
-    }
-    
-    [self.history addObject:record];
 }
 @end

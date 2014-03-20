@@ -17,11 +17,13 @@
 
 @interface CardGameViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *label; // label for displaying score
-@property (strong, nonatomic) CardMatchingGame* game; // need a property for the model
+@property (strong, nonatomic) CardMatchingGame *game; // need a property for the model
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
+@property (weak, nonatomic) IBOutlet UISwitch *modeSwitcher;
 @property (weak, nonatomic) IBOutlet UILabel *historyLabel;
 @property (weak, nonatomic) IBOutlet UISlider *slider;
-@property (weak, nonatomic) IBOutlet UISwitch *modeSwitcher;
+@property (strong, nonatomic) NSMutableArray *gameHistory;
+@property (strong, nonatomic) NSMutableArray* chosenCards;
 @end
 
 @implementation CardGameViewController
@@ -34,40 +36,112 @@
 -(CardMatchingGame*) game {
     if (!_game) {
         _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:[self createDeck]];
+        _game.matchingCards = (self.modeSwitcher.on)? 3:2;
     }
     
     return _game;
 }
 
+- (NSMutableArray*) gameHistory {
+    if (!_gameHistory) {
+        _gameHistory = [[NSMutableArray alloc] init];
+    }
+    
+    return _gameHistory;
+}
+
+- (NSMutableArray*) chosenCards {
+    if (!_chosenCards) {
+        _chosenCards = [[NSMutableArray alloc] init];
+    }
+    
+    return _chosenCards;
+}
+
 // Button click event handler
-- (IBAction)doFlipCard:(UIButton *)sender {
+- (IBAction) touchCardButton:(UIButton *)sender {
     // Find out the index of the button being clicked
-    NSUInteger choosenIndex = [self.cardButtons indexOfObject:sender];
+    NSUInteger chosenIndex = [self.cardButtons indexOfObject:sender];
+    Card* card = [self.game cardAtIndex:chosenIndex];
+    
+    NSUInteger score = self.game.score;
+    //NSMutableArray* chosenCards = [[NSMutableArray alloc] init];
+    NSMutableAttributedString* history = [[NSMutableAttributedString alloc] init];
+    
+    /*for(int i = 0; i < [self.cardButtons count]; i++) {
+        Card* cardAtIndex = [self.game cardAtIndex:i];
+        if (cardAtIndex.isChosen && !cardAtIndex.isMatched) {
+            [self.chosenCards addObject:cardAtIndex];
+        }
+    }*/
+    
     // Call the model to choose the card at that index
-    [self.game chooseCardAtIndex:choosenIndex];
+    [self.game chooseCardAtIndex:chosenIndex];
+    
+    if (card.isChosen) {
+        [self.chosenCards addObject:card];
+    } else {
+        [self.chosenCards removeObject:card];
+    }
+    
+    for (PlayingCard* chosenCard in self.chosenCards) {
+        [history appendAttributedString:[self attributedContentOfCard:chosenCard]];
+    }
+    
+    if ([self.chosenCards count] == self.game.matchingCards) {
+        NSString* matchResult;
+        
+        if (card.isMatched) {
+            matchResult = [NSString stringWithFormat:@" matched for %lu points!", (self.game.score - score)];
+            [self.chosenCards removeAllObjects];
+        } else {
+            matchResult = [NSString stringWithFormat:@" do not match! %lu point penalty!", (score - self.game.score)];
+            [self.chosenCards removeObjectsInRange:NSMakeRange(0, [self.chosenCards count] - 1)];
+        }
+        [history appendAttributedString:[[NSAttributedString alloc] initWithString:matchResult attributes:@{NSForegroundColorAttributeName: [UIColor blackColor]}]];
+    }
+    
+    [self.gameHistory addObject:history];
+    
     // Update the UI according to the new state of the model
     [self updateUI];
     
-    // Solution
+    // Lab #2 Solution
     self.modeSwitcher.enabled= NO;
 }
 
--(void) updateUI {
+// ### Lab 3 ###
+-(NSAttributedString*) attributedContentOfCard:(PlayingCard*) card
+{
+    NSMutableAttributedString* attributedContent = [[NSMutableAttributedString alloc] initWithString:card.contents attributes:@{NSForegroundColorAttributeName:[UIColor blackColor]}];
+    
+    if ([card.suit isEqualToString:@"♥︎"] || [card.suit isEqualToString:@"♦︎"]) {
+        NSRange range = [[attributedContent string] rangeOfString:card.suit];
+        [attributedContent addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:.498 green:0 blue:.0 alpha:1] range:range];
+    }
+    
+    return attributedContent;
+}
+// ###
+
+-(void) updateUI
+{
     for(UIButton* cardButton in self.cardButtons) {
         // Find out card index
         NSUInteger cardIndex = [self.cardButtons indexOfObject:cardButton];
         // Get the card object
         //Card* card = [self.game cardAtIndex:cardIndex];
         //[cardButton setTitle:((card.isChosen)? card.contents:@"") forState:UIControlStateNormal];
+        
         // Lab #3
         id obj = [self.game cardAtIndex:cardIndex];
         if ([obj isKindOfClass:[PlayingCard class]]) {
             PlayingCard* card = (PlayingCard*) obj;
             
             if (card.isChosen) {
-                [cardButton setAttributedTitle:card.attributedContents forState:UIControlStateNormal];
+                [cardButton setAttributedTitle:[self attributedContentOfCard:card] forState:UIControlStateNormal];
             } else {
-                [cardButton setAttributedTitle:[[NSAttributedString alloc] init] forState:UIControlStateNormal];
+                [cardButton setAttributedTitle:nil forState:UIControlStateNormal];
             }
             
             UIImage* image = [UIImage imageNamed:((card.isChosen)? @"BlankCard":@"stanford")];
@@ -78,32 +152,33 @@
     }
     
     // ### Lab 3 ###
-    self.slider.maximumValue = [self.game.history count];
+    self.slider.maximumValue = [self.gameHistory count] - 1;
     [self.slider setValue: self.slider.maximumValue animated:true];
-    [self updateHistoryLabel:(self.slider.maximumValue - 1)];
+    [self updateHistoryLabel:(self.slider.maximumValue)];
 }
 
 // ### Lab 2 ###
 - (IBAction)restartGame:(UIButton *)sender {
     self.game = nil;
+    self.gameHistory = nil;
+    self.chosenCards = nil;
     [self updateUI];
     self.modeSwitcher.enabled= YES;
 }
 
 - (IBAction)modeChanged:(UISwitch *)sender {
-    self.game.matching3Cards = !self.game.matching3Cards;
+    self.game.matchingCards = (sender.on)? 3:2;
 }
 
 // ### Lab 3 ###
 - (void) updateHistoryLabel:(int) recordIndex {
-    if (recordIndex >= 0) {
-        NSAttributedString* messageToDisplay = [self.game.history objectAtIndex:recordIndex];
-        // Grey out historical records
+    NSAttributedString* messageToDisplay;
+    
+    if ([self.gameHistory count] && recordIndex >= 0) {
+        messageToDisplay = [self.gameHistory objectAtIndex:recordIndex];
         self.historyLabel.alpha = (recordIndex < self.slider.maximumValue - 1)? 0.5:1.0;
-        [self.historyLabel setAttributedText:messageToDisplay];
-    } else {
-        [self.historyLabel setText:@""];
     }
+    [self.historyLabel setAttributedText:messageToDisplay];
 }
 
 - (IBAction)sliderValueChanged:(UISlider *)sender {

@@ -65,15 +65,8 @@
     Card* card = [self.game cardAtIndex:chosenIndex];
     
     NSUInteger score = self.game.score;
-    //NSMutableArray* chosenCards = [[NSMutableArray alloc] init];
     NSMutableAttributedString* history = [[NSMutableAttributedString alloc] init];
     
-    /*for(int i = 0; i < [self.cardButtons count]; i++) {
-        Card* cardAtIndex = [self.game cardAtIndex:i];
-        if (cardAtIndex.isChosen && !cardAtIndex.isMatched) {
-            [self.chosenCards addObject:cardAtIndex];
-        }
-    }*/
     
     // Call the model to choose the card at that index
     [self.game chooseCardAtIndex:chosenIndex];
@@ -84,7 +77,7 @@
         [self.chosenCards removeObject:card];
     }
     
-    for (PlayingCard* chosenCard in self.chosenCards) {
+    for (Card* chosenCard in self.chosenCards) {
         [history appendAttributedString:[self attributedContentOfCard:chosenCard]];
     }
     
@@ -111,13 +104,18 @@
 }
 
 // ### Lab 3 ###
--(NSAttributedString*) attributedContentOfCard:(PlayingCard*) card
+-(NSAttributedString*) attributedContentOfCard:(Card*) card
 {
-    NSMutableAttributedString* attributedContent = [[NSMutableAttributedString alloc] initWithString:card.contents attributes:@{NSForegroundColorAttributeName:[UIColor blackColor]}];
+    NSMutableAttributedString* attributedContent;
     
-    if ([card.suit isEqualToString:@"♥︎"] || [card.suit isEqualToString:@"♦︎"]) {
-        NSRange range = [[attributedContent string] rangeOfString:card.suit];
-        [attributedContent addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:.498 green:0 blue:.0 alpha:1] range:range];
+    if ([card isKindOfClass:[PlayingCard class]]) {
+        PlayingCard* playingCard = (PlayingCard*) card;
+        attributedContent = [[NSMutableAttributedString alloc] initWithString:playingCard.contents attributes:@{NSForegroundColorAttributeName:[UIColor blackColor]}];
+        
+        if ([playingCard.suit isEqualToString:@"♥︎"] || [playingCard.suit isEqualToString:@"♦︎"]) {
+            NSRange range = [[attributedContent string] rangeOfString:playingCard.suit];
+            [attributedContent addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:.498 green:0 blue:.0 alpha:1] range:range];
+        }
     }
     
     return attributedContent;
@@ -129,32 +127,25 @@
     for(UIButton* cardButton in self.cardButtons) {
         // Find out card index
         NSUInteger cardIndex = [self.cardButtons indexOfObject:cardButton];
+        
         // Get the card object
-        //Card* card = [self.game cardAtIndex:cardIndex];
+        Card* card = [self.game cardAtIndex:cardIndex];
         //[cardButton setTitle:((card.isChosen)? card.contents:@"") forState:UIControlStateNormal];
         
         // Lab #3
-        id obj = [self.game cardAtIndex:cardIndex];
-        if ([obj isKindOfClass:[PlayingCard class]]) {
-            PlayingCard* card = (PlayingCard*) obj;
-            
-            if (card.isChosen) {
-                [cardButton setAttributedTitle:[self attributedContentOfCard:card] forState:UIControlStateNormal];
-            } else {
-                [cardButton setAttributedTitle:nil forState:UIControlStateNormal];
-            }
-            
-            UIImage* image = [UIImage imageNamed:((card.isChosen)? @"BlankCard":@"stanford")];
-            [cardButton setBackgroundImage:image forState:UIControlStateNormal];
-            cardButton.enabled = !card.isMatched;
-        }
+        NSAttributedString* content = (card.isChosen)? [self attributedContentOfCard:card]: nil;
+       [cardButton setAttributedTitle:content forState:UIControlStateNormal];
+        
+        UIImage* image = [UIImage imageNamed:((card.isChosen)? @"BlankCard":@"stanford")];
+        [cardButton setBackgroundImage:image forState:UIControlStateNormal];
+        cardButton.enabled = !card.isMatched;
         [self.label setText:[NSString stringWithFormat:@"Score: %d", (int)self.game.score]];
     }
     
     // ### Lab 3 ###
-    self.slider.maximumValue = [self.gameHistory count] - 1;
+    self.slider.maximumValue = [self.gameHistory count];
     [self.slider setValue: self.slider.maximumValue animated:true];
-    [self updateHistoryLabel:(self.slider.maximumValue)];
+    [self updateHistoryLabel:(self.slider.maximumValue - 1)];
 }
 
 // ### Lab 2 ###
@@ -174,7 +165,7 @@
 - (void) updateHistoryLabel:(int) recordIndex {
     NSAttributedString* messageToDisplay;
     
-    if ([self.gameHistory count] && recordIndex >= 0) {
+    if (recordIndex >= 0) {
         messageToDisplay = [self.gameHistory objectAtIndex:recordIndex];
         self.historyLabel.alpha = (recordIndex < self.slider.maximumValue - 1)? 0.5:1.0;
     }

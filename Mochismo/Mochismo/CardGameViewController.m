@@ -41,7 +41,6 @@
         // If the title of the button is greater than 0 (meaning, it is displaying a card, then
         // flip it to the back side.
         [sender setBackgroundImage:[UIImage imageNamed:@"stanford"] forState:UIControlStateNormal];
-    
         [sender setTitle:@"" forState:UIControlStateNormal];
     } else {
         // If the title of the button is 0, then flip it to the front side (i.e. displaying the suit
@@ -68,5 +67,6 @@
 - (void) setCount:(int)count {
    _count = count;
     [self.label setText:[NSString stringWithFormat:@"Flips: %d", self.count]];
+    NSLog(@"count=%d", self.count);
 }
 @end

@@ -10,19 +10,6 @@
 
 @implementation PlayingCard
 
-// Lab #3
-- (NSAttributedString*) attributedContents {
-    NSMutableAttributedString* contentString = [[NSMutableAttributedString alloc] initWithString:self.contents];
-    [contentString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, [self.contents length])];
-    
-    if ([self.suit isEqualToString:@"♥︎"] || [self.suit isEqualToString:@"♦︎"]) {
-        NSRange range = [[contentString string] rangeOfString:self.suit];
-        [contentString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:.498 green:0 blue:.0 alpha:1] range:range];
-    }
-
-    return contentString;
-}
-
 // Getter: return the contents (rank and suit) of a playing card
 - (NSString*) contents {
     NSArray* rankStrings = [PlayingCard rankStrings];

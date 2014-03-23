@@ -11,7 +11,6 @@
 @interface CardMatchingGame()
 @property (strong, nonatomic) NSMutableArray* cards;
 @property (nonatomic, readwrite) NSUInteger score; // However, we need to use "readwrite" keyword to make sure the controller itself can do read/write
-@property (nonatomic) NSUInteger mode; // Lab 2
 @end
 
 @implementation CardMatchingGame
@@ -62,50 +61,6 @@ static const int MATCH_BONUS = 4;
 static const int MISMATCH_PENALTY = 2;
 static const int COST_TO_CHOOSE = 1;
 
-/* Demo
-- (void) chooseCardAtIndex:(NSUInteger) index {
-    // Only react to non-matched cards
-    Card* card = [self cardAtIndex:index];
-    
-    if (card) {
-        // We only allot unmatched card to be chosen
-        if (!card.isMatched) {
-            if (card.isChosen) {
-                // If the card has been chosen, unchoose it
-                card.chosen = NO;
-            } else {
-                // Otherwise, we need to match it with other chosen cards
-                for(Card* otherCard in self.cards) {
-                    if (!otherCard.isMatched && otherCard.isChosen) {
-                        // Match method of the card class takes an array
-                        // of other cards in case a subclass can match multiple cards
-                        // Since out game is only a 2-card matching game, we just create an array with one card in it
-                        int matchScore = [card match:@[otherCard]];
-                        if (matchScore) {
-                            self.score += MATCH_BONUS;
-                            // Set matched flag to YES for both cards
-                            otherCard.matched = YES;
-                            card.matched = YES;
-                        } else {
-                            self.score -= MISMATCH_PENALTY;
-                            // Flip the other card that is not a match
-                            otherCard.chosen = NO;
-                        }
-                        break; // Only 2 cards for now, so we can break out the loop
-                    }
-                }
-                // Cost to choose (to prevent from cheating)
-                self.score -= COST_TO_CHOOSE;
-                
-                // Choose the card
-                card.chosen = YES;
-            }
-        }
-    }
-}
-*/
-
-// Lab 2 solution
 - (void) chooseCardAtIndex:(NSUInteger) index
 {
     Card* card = [self cardAtIndex:index];

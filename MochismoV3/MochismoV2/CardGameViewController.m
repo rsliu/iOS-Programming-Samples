@@ -11,15 +11,11 @@
 // It is sort of unfortunate that we are importing PlayingCardDeck into this class since it is otherwise a generic card matching game Controller.
 //In other words, there’s really nothing that would prevent it from working with other Decks of other kinds of cards than PlayingCards.
 //We’ll use polymorphism next week to improve this state of affairs.
-#import "PlayingCardDeck.h"
 #import "CardMatchingGame.h"
 #import "PlayingCard.h"
 
 @interface CardGameViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *label; // label for displaying score
-@property (strong, nonatomic) CardMatchingGame *game; // need a property for the model
-@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
-@property (weak, nonatomic) IBOutlet UISwitch *modeSwitcher;
 @property (weak, nonatomic) IBOutlet UILabel *historyLabel;
 @property (weak, nonatomic) IBOutlet UISlider *slider;
 @property (strong, nonatomic) NSMutableArray *gameHistory;
@@ -30,13 +26,13 @@
 
 
 -(Deck*) createDeck {
-    return [[PlayingCardDeck alloc] init];
+    return nil;
 }
 
 -(CardMatchingGame*) game {
     if (!_game) {
         _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:[self createDeck]];
-        _game.matchingCards = (self.modeSwitcher.on)? 3:2;
+        _game.matchingCards = 2;
     }
     
     return _game;
@@ -98,70 +94,37 @@
     
     // Update the UI according to the new state of the model
     [self updateUI];
-    
-    // Lab #2 Solution
-    self.modeSwitcher.enabled= NO;
 }
 
-// ### Lab 3 ###
 -(NSAttributedString*) attributedContentOfCard:(Card*) card
 {
-    NSMutableAttributedString* attributedContent;
-    
-    if ([card isKindOfClass:[PlayingCard class]]) {
-        PlayingCard* playingCard = (PlayingCard*) card;
-        attributedContent = [[NSMutableAttributedString alloc] initWithString:playingCard.contents attributes:@{NSForegroundColorAttributeName:[UIColor blackColor]}];
-        
-        if ([playingCard.suit isEqualToString:@"♥︎"] || [playingCard.suit isEqualToString:@"♦︎"]) {
-            NSRange range = [[attributedContent string] rangeOfString:playingCard.suit];
-            [attributedContent addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:.498 green:0 blue:.0 alpha:1] range:range];
-        }
-    }
-    
-    return attributedContent;
+    return nil;
 }
-// ###
+
+-(void) updateCardButtons
+{
+}
 
 -(void) updateUI
 {
-    for(UIButton* cardButton in self.cardButtons) {
-        // Find out card index
-        NSUInteger cardIndex = [self.cardButtons indexOfObject:cardButton];
-        
-        // Get the card object
-        Card* card = [self.game cardAtIndex:cardIndex];
-        //[cardButton setTitle:((card.isChosen)? card.contents:@"") forState:UIControlStateNormal];
-        
-        // Lab #3
-        NSAttributedString* content = (card.isChosen)? [self attributedContentOfCard:card]: nil;
-       [cardButton setAttributedTitle:content forState:UIControlStateNormal];
-        
-        UIImage* image = [UIImage imageNamed:((card.isChosen)? @"BlankCard":@"stanford")];
-        [cardButton setBackgroundImage:image forState:UIControlStateNormal];
-        cardButton.enabled = !card.isMatched;
-        [self.label setText:[NSString stringWithFormat:@"Score: %d", (int)self.game.score]];
-    }
-    
-    // ### Lab 3 ###
+    [self updateCardButtons];
+    [self.label setText:[NSString stringWithFormat:@"Score: %d", (int)self.game.score]];
     self.slider.maximumValue = [self.gameHistory count];
     [self.slider setValue: self.slider.maximumValue animated:true];
     [self updateHistoryLabel:(self.slider.maximumValue - 1)];
 }
 
-// ### Lab 2 ###
 - (IBAction)restartGame:(UIButton *)sender {
     self.game = nil;
     self.gameHistory = nil;
     self.chosenCards = nil;
     [self updateUI];
-    self.modeSwitcher.enabled= YES;
 }
 
 - (IBAction)modeChanged:(UISwitch *)sender {
     self.game.matchingCards = (sender.on)? 3:2;
 }
 
-// ### Lab 3 ###
 - (void) updateHistoryLabel:(int) recordIndex {
     NSAttributedString* messageToDisplay;
     

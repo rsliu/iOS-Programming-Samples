@@ -33,5 +33,4 @@
     // Always return self
     return self;
 }
-
 @end

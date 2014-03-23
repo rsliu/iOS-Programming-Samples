@@ -20,12 +20,11 @@
 		3A17E153188D87F200D909A2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A17E132188D87F200D909A2 /* Foundation.framework */; };
 		3A17E154188D87F200D909A2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A17E136188D87F200D909A2 /* UIKit.framework */; };
 		3A17E15C188D87F200D909A2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3A17E15A188D87F200D909A2 /* InfoPlist.strings */; };
-		3A17E15E188D87F200D909A2 /* MochismoV3Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A17E15D188D87F200D909A2 /* MochismoV3Tests.m */; };
+		3A17E15E188D87F200D909A2 /* MochismoV2Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A17E15D188D87F200D909A2 /* MochismoV2Tests.m */; };
 		3A17E16F188D883C00D909A2 /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A17E169188D883C00D909A2 /* Card.m */; };
 		3A17E170188D883C00D909A2 /* Deck.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A17E16B188D883C00D909A2 /* Deck.m */; };
 		3A17E171188D883C00D909A2 /* PlayingCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A17E16C188D883C00D909A2 /* PlayingCard.m */; };
 		3A17E172188D883C00D909A2 /* PlayingCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A17E16E188D883C00D909A2 /* PlayingCardDeck.m */; };
-		3A721EDF18A0CD2F007AF962 /* PlayingCardGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A721EDE18A0CD2F007AF962 /* PlayingCardGameViewController.m */; };
 		3AFFAE06188D90E0009ADCDC /* CardMatchingGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFFAE05188D90E0009ADCDC /* CardMatchingGame.m */; };
 /* End PBXBuildFile section */
 
@@ -58,7 +57,7 @@
 		3A17E151188D87F200D909A2 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		3A17E159188D87F200D909A2 /* MochismoV3Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MochismoV3Tests-Info.plist"; sourceTree = "<group>"; };
 		3A17E15B188D87F200D909A2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		3A17E15D188D87F200D909A2 /* MochismoV3Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MochismoV3Tests.m; sourceTree = "<group>"; };
+		3A17E15D188D87F200D909A2 /* MochismoV2Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MochismoV2Tests.m; sourceTree = "<group>"; };
 		3A17E168188D883C00D909A2 /* Card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
 		3A17E169188D883C00D909A2 /* Card.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Card.m; sourceTree = "<group>"; };
 		3A17E16A188D883C00D909A2 /* Deck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Deck.h; sourceTree = "<group>"; };
@@ -67,8 +66,6 @@
 		3A17E16D188D883C00D909A2 /* PlayingCardDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayingCardDeck.h; sourceTree = "<group>"; };
 		3A17E16E188D883C00D909A2 /* PlayingCardDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingCardDeck.m; sourceTree = "<group>"; };
 		3A432FB7188D891A001FAFC5 /* PlayingCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayingCard.h; sourceTree = "<group>"; };
-		3A721EDD18A0CD2F007AF962 /* PlayingCardGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayingCardGameViewController.h; sourceTree = "<group>"; };
-		3A721EDE18A0CD2F007AF962 /* PlayingCardGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingCardGameViewController.m; sourceTree = "<group>"; };
 		3AFFAE04188D90E0009ADCDC /* CardMatchingGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardMatchingGame.h; sourceTree = "<group>"; };
 		3AFFAE05188D90E0009ADCDC /* CardMatchingGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardMatchingGame.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -100,8 +97,8 @@
 		3A17E126188D87F200D909A2 = {
 			isa = PBXGroup;
 			children = (
-				3A17E138188D87F200D909A2 /* MochismoV3 */,
-				3A17E157188D87F200D909A2 /* MochismoV3Tests */,
+				3A17E138188D87F200D909A2 /* MochismoV2 */,
+				3A17E157188D87F200D909A2 /* MochismoV2Tests */,
 				3A17E131188D87F200D909A2 /* Frameworks */,
 				3A17E130188D87F200D909A2 /* Products */,
 			);
@@ -127,19 +124,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		3A17E138188D87F200D909A2 /* MochismoV3 */ = {
+		3A17E138188D87F200D909A2 /* MochismoV2 */ = {
 			isa = PBXGroup;
 			children = (
+				3A17E167188D880E00D909A2 /* Model */,
 				3A17E144188D87F200D909A2 /* Main.storyboard */,
 				3A17E147188D87F200D909A2 /* CardGameViewController.h */,
-				3A721EDD18A0CD2F007AF962 /* PlayingCardGameViewController.h */,
-				3A721EDE18A0CD2F007AF962 /* PlayingCardGameViewController.m */,
 				3A17E148188D87F200D909A2 /* CardGameViewController.m */,
-				3A17E167188D880E00D909A2 /* Model */,
 				3A17E14A188D87F200D909A2 /* Images.xcassets */,
 				3A17E139188D87F200D909A2 /* Supporting Files */,
 			);
-			name = MochismoV3;
 			path = MochismoV2;
 			sourceTree = "<group>";
 		};
@@ -156,13 +150,12 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		3A17E157188D87F200D909A2 /* MochismoV3Tests */ = {
+		3A17E157188D87F200D909A2 /* MochismoV2Tests */ = {
 			isa = PBXGroup;
 			children = (
-				3A17E15D188D87F200D909A2 /* MochismoV3Tests.m */,
+				3A17E15D188D87F200D909A2 /* MochismoV2Tests.m */,
 				3A17E158188D87F200D909A2 /* Supporting Files */,
 			);
-			name = MochismoV3Tests;
 			path = MochismoV2Tests;
 			sourceTree = "<group>";
 		};
@@ -237,7 +230,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = CardGame;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Ren-Shiou Liu";
 				TargetAttributes = {
 					3A17E14F188D87F200D909A2 = {
@@ -298,7 +291,6 @@
 				3A17E172188D883C00D909A2 /* PlayingCardDeck.m in Sources */,
 				3A17E13F188D87F200D909A2 /* main.m in Sources */,
 				3A17E16F188D883C00D909A2 /* Card.m in Sources */,
-				3A721EDF18A0CD2F007AF962 /* PlayingCardGameViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,7 +298,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A17E15E188D87F200D909A2 /* MochismoV3Tests.m in Sources */,
+				3A17E15E188D87F200D909A2 /* MochismoV2Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,7 +344,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -391,7 +382,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -449,7 +439,6 @@
 		3A17E165188D87F200D909A2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MochismoV2.app/MochismoV2";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -472,7 +461,6 @@
 		3A17E166188D87F200D909A2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MochismoV2.app/MochismoV2";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",

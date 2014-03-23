@@ -13,7 +13,8 @@
 @interface CardMatchingGame : NSObject
 
 @property (nonatomic, readonly) NSUInteger score; // Make sure no one can change this public property
-- (instancetype) initWithCardCount:(int) count usingDeck:(Deck*) deck; // Dedicated initializer must be public
+- (instancetype) initWithCardCount:(NSUInteger) count usingDeck:(Deck*) deck; // Dedicated initializer must be public
 - (void) chooseCardAtIndex:(NSUInteger) index; // Method for choosing a card
 - (Card*) cardAtIndex:(NSUInteger) index; // Method for accessing a card
+@property (nonatomic) int matchingCards;
 @end

@@ -12,7 +12,7 @@
 //In other words, there’s really nothing that would prevent it from working with other Decks of other kinds of cards than PlayingCards.
 //We’ll use polymorphism next week to improve this state of affairs.
 #import "CardMatchingGame.h"
-#import "PlayingCard.h"
+#import "Card.h"
 
 @interface CardGameViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *label; // label for displaying score
@@ -32,7 +32,6 @@
 -(CardMatchingGame*) game {
     if (!_game) {
         _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:[self createDeck]];
-        _game.matchingCards = 2;
     }
     
     return _game;
@@ -77,7 +76,7 @@
         [history appendAttributedString:[self attributedContentOfCard:chosenCard]];
     }
     
-    if ([self.chosenCards count] == self.game.matchingCards) {
+    if ([self.chosenCards count] == [self.game matchingCards]) {
         NSString* matchResult;
         
         if (card.isMatched) {
@@ -119,10 +118,6 @@
     self.gameHistory = nil;
     self.chosenCards = nil;
     [self updateUI];
-}
-
-- (IBAction)modeChanged:(UISwitch *)sender {
-    self.game.matchingCards = (sender.on)? 3:2;
 }
 
 - (void) updateHistoryLabel:(int) recordIndex {

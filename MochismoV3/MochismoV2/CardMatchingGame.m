@@ -61,10 +61,18 @@ static const int MATCH_BONUS = 4;
 static const int MISMATCH_PENALTY = 2;
 static const int COST_TO_CHOOSE = 1;
 
+- (NSUInteger) matchingCards {
+    return 0; // don't match anything
+}
+
+- (NSInteger) calculateMatchScore:(NSArray*) chosenCards
+{
+    return 0;
+}
+
 - (void) chooseCardAtIndex:(NSUInteger) index
 {
     Card* card = [self cardAtIndex:index];
-    NSString* matchResult;
     
     if (card) {
         if (!card.isMatched) {
@@ -84,13 +92,10 @@ static const int COST_TO_CHOOSE = 1;
                 [chosenCards addObject:card];
                 
                 if ([chosenCards count] == self.matchingCards) {
-                    int matchScore = 0;
+                    NSUInteger matchScore = 0;
                     
-                    for(int i = 0; i < [chosenCards count]; i++) {
-                        Card* card = [chosenCards objectAtIndex:i];
-                        NSArray* cardsToMatch = [chosenCards subarrayWithRange:NSMakeRange(i+1, [chosenCards count] - i - 1)];
-                        matchScore += [card match:cardsToMatch];
-                    }
+                    // Playing card and Set card calculate score differently
+                    matchScore = [self calculateMatchScore:chosenCards];
                     
                     if (matchScore) {
                         self.score += MATCH_BONUS * matchScore;

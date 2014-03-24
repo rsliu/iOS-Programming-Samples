@@ -61,17 +61,6 @@
     
     // Make sure the otherCards array is not empty first
     if ([otherCards count]) {
-        // Demo part
-        /* PlayingCard* otherCard = [otherCards firstObject];
-         if (otherCard.rank == self.rank) {
-            // matching rank is more difficult, therefore a higher score
-            score = 4;
-         } else if ([otherCard.suit isEqualToString:self.suit]) {
-            score = 1;
-         }
-         */
-        
-        // Lab 2 solution
         for (PlayingCard* otherCard in otherCards) {
             if (otherCard.rank == self.rank) {
                 // matching rank is more difficult, therefore a higher score

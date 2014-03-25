@@ -26,7 +26,7 @@
 }
 
 // Step 1. Dedicated initializer
-- (instancetype) initWithCardCount:(NSUInteger) count usingDeck:(Deck*) deck {
+- (instancetype) initWithCardCount:(NSUInteger) count usingDeck:(Deck*) deck matchingCards:(NSUInteger)matchingCards {
     // Again, always call the init of the super class first
     self = [super init];
     
@@ -44,6 +44,8 @@
                 break;
             }
         }
+        
+        self.matchingCards = matchingCards;
     }
     
     // Always return self
@@ -60,10 +62,6 @@
 static const int MATCH_BONUS = 4;
 static const int MISMATCH_PENALTY = 2;
 static const int COST_TO_CHOOSE = 1;
-
-- (NSUInteger) matchingCards {
-    return 0; // don't match anything
-}
 
 - (NSInteger) calculateMatchScore:(NSArray*) chosenCards
 {
@@ -95,7 +93,7 @@ static const int COST_TO_CHOOSE = 1;
                     NSUInteger matchScore = 0;
                     
                     // Playing card and Set card calculate score differently
-                    matchScore = [self calculateMatchScore:chosenCards];
+                    matchScore = [card match:[chosenCards subarrayWithRange:NSMakeRange(0, [chosenCards count] - 1)]];
                     
                     if (matchScore) {
                         self.score += MATCH_BONUS * matchScore;

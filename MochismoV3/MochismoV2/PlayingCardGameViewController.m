@@ -9,17 +9,32 @@
 #import "PlayingCardGameViewController.h"
 #import "PlayingCard.h"
 #import "PlayingCardDeck.h"
-#import "PlayingCardMatchingGame.h"
+#import "CardMatchingGame.h"
 
 @interface PlayingCardGameViewController ()
-
+@property (strong, nonatomic) CardMatchingGame* game;
 @end
 
 @implementation PlayingCardGameViewController
 
+-(void) viewDidLoad {
+    [super viewDidLoad];
+}
+
 -(Deck*) createDeck {
     return [[PlayingCardDeck alloc] init];
 }
+
+-(CardMatchingGame*) game {
+    if (!_game) {
+        _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
+                                              usingDeck:[self createDeck]
+                                              matchingCards:2];
+    }
+    
+    return _game;
+}
+
 
 -(void) updateCardButtons {
     for(UIButton* cardButton in self.cardButtons) {

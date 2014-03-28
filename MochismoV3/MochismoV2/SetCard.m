@@ -11,17 +11,30 @@
 @implementation SetCard
 
 -(int) match:(NSArray*) otherCards {
-    int score = 0;
+    int numberOfMatches = 0;
+    NSArray* keys = @[@"number", @"symbol", @"color", @"shading"];
+
+    NSMutableArray* cardsToMatch = [otherCards mutableCopy];
+    [cardsToMatch addObject:self];
+
     
-    if ([otherCards count]) {
-        for (SetCard* otherCard in otherCards) {
-            if (otherCard.number == self.number) {
-                score += 1;
+    for(NSString* key in keys) {
+        for(NSUInteger j = 0; j < [cardsToMatch count]; j++) {
+            SetCard* card = [cardsToMatch objectAtIndex:j];
+            
+            numberOfMatches = 0;
+            for (NSUInteger k = j+1; k < [cardsToMatch count]; k++) {
+                SetCard* anotherCard = [cardsToMatch objectAtIndex:k];
+                if ([card valueForKey:key] == [anotherCard valueForKey:key]) {
+                    numberOfMatches++;
+                }
             }
+            
+            if (numberOfMatches != 0 && numberOfMatches != ([otherCards count] - j - 2)) return 0;
         }
     }
     
-    return score;
+    return 1;
 }
 
 @end

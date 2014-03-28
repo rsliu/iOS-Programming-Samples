@@ -69,6 +69,12 @@
                 score += 1;
             }
         }
+        
+        for(int i = 0; i < [otherCards count]; i++) {
+            Card* card = [otherCards objectAtIndex:i];
+            NSArray* cardsToMatch = [otherCards subarrayWithRange:NSMakeRange(i+1, [otherCards count] - i - 1)];
+            score += [card match:cardsToMatch];
+        }
     }
     
     return score;

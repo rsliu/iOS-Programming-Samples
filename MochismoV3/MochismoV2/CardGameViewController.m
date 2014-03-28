@@ -18,24 +18,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *label; // label for displaying score
 @property (weak, nonatomic) IBOutlet UILabel *historyLabel;
 @property (weak, nonatomic) IBOutlet UISlider *slider;
+@property (strong, nonatomic) CardMatchingGame *game; // need a property for the model
 @property (strong, nonatomic) NSMutableArray *gameHistory;
 @property (strong, nonatomic) NSMutableArray* chosenCards;
 @end
 
 @implementation CardGameViewController
 
-
--(Deck*) createDeck {
-    return nil;
-}
-
--(CardMatchingGame*) game {
-    if (!_game) {
-        _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:[self createDeck]];
-    }
-    
-    return _game;
-}
 
 - (NSMutableArray*) gameHistory {
     if (!_gameHistory) {

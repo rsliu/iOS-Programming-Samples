@@ -12,6 +12,7 @@
 @property (nonatomic,strong) UIImageView *imageView;
 @property (nonatomic,strong) UIImage *image;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 @end
 
 @implementation ImageViewController
@@ -44,6 +45,7 @@
 {
     self.image = nil;
     if (self.imageURL) {
+        [self.spinner startAnimating];
         NSURLRequest *request = [NSURLRequest requestWithURL:self.imageURL];
         NSURLSessionConfiguration *config = [NSURLSessionConfiguration ephemeralSessionConfiguration];
         NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
@@ -78,6 +80,7 @@
     // Note we don't have to synthesize to an instance variable
     self.imageView.image = image;
     [self.imageView sizeToFit];
+    [self.spinner stopAnimating];
 }
 
 - (void) viewDidLoad

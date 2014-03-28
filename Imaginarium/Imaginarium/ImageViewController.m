@@ -37,10 +37,28 @@
 - (void) setImageURL:(NSURL *)imageURL
 {
     _imageURL = imageURL;
-    // The following line is going to block. we need to unblock it
-    // We are going to display: http://images.apple.com/v/iphone-5s/gallery/a/images/download/photo_1.jpg
-    self.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:self.imageURL]];
-    self.scrollView.contentSize = self.image? self.image.size: CGSizeZero;
+    [self startDownloadingImage];
+}
+
+- (void) startDownloadingImage
+{
+    self.image = nil;
+    if (self.imageURL) {
+        NSURLRequest *request = [NSURLRequest requestWithURL:self.imageURL];
+        NSURLSessionConfiguration *config = [NSURLSessionConfiguration ephemeralSessionConfiguration];
+        NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
+        NSURLSessionDownloadTask *task = [session downloadTaskWithRequest:request
+                                          completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
+                                              if (!error) {
+                                                  if ([request.URL isEqual:self.imageURL]) {
+                                                      // in case we change URL before the previous task is outstanding
+                                                      UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:location]];
+                                                      dispatch_async(dispatch_get_main_queue(), ^{ self.image = image;});
+                                                  }
+                                              }
+                                          }];
+        [task resume];
+    }
 }
 
 
@@ -65,9 +83,9 @@
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-    // Be sure to set the content size
     
-    [self.scrollView addSubview:self.imageView]; // make sure the image view is on screen
+    // make sure the image view is on screen
+    [self.scrollView addSubview:self.imageView];
 }
 
 @end

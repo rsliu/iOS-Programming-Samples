@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="K45-hh-TWi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="K45-hh-TWi">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--View Controller - Imaginarium-->
@@ -54,9 +54,15 @@
                             <constraint firstAttribute="centerX" secondItem="mti-ai-ptR" secondAttribute="centerX" id="5Mn-Xy-TU7"/>
                             <constraint firstAttribute="centerY" secondItem="Bqw-4S-Ete" secondAttribute="centerY" id="AYL-5n-dxi"/>
                             <constraint firstAttribute="centerX" secondItem="Bqw-4S-Ete" secondAttribute="centerX" id="H6z-5b-o9p"/>
+                            <constraint firstAttribute="centerX" secondItem="Bqw-4S-Ete" secondAttribute="centerX" id="RAY-m0-s4O"/>
                             <constraint firstItem="jqE-hA-lBX" firstAttribute="top" secondItem="Bqw-4S-Ete" secondAttribute="bottom" constant="-6" id="U1L-0K-36W"/>
                             <constraint firstItem="Bqw-4S-Ete" firstAttribute="top" secondItem="mti-ai-ptR" secondAttribute="bottom" constant="-5" id="U2Z-bG-t4A"/>
+                            <constraint firstItem="jqE-hA-lBX" firstAttribute="top" secondItem="Bqw-4S-Ete" secondAttribute="bottom" constant="-6" id="Y18-io-JMj"/>
+                            <constraint firstItem="Bqw-4S-Ete" firstAttribute="top" secondItem="mti-ai-ptR" secondAttribute="bottom" constant="-5" id="dcX-jo-yw9"/>
+                            <constraint firstAttribute="centerX" secondItem="mti-ai-ptR" secondAttribute="centerX" id="e3c-gN-Wxb"/>
+                            <constraint firstAttribute="centerY" secondItem="Bqw-4S-Ete" secondAttribute="centerY" id="tLA-iD-aIK"/>
                             <constraint firstAttribute="centerX" secondItem="jqE-hA-lBX" secondAttribute="centerX" id="vNU-jc-HCn"/>
+                            <constraint firstAttribute="centerX" secondItem="jqE-hA-lBX" secondAttribute="centerX" id="wZh-tN-shU"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Imaginarium" id="IqZ-hh-nrr"/>
@@ -124,6 +130,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="wtm-VH-lK4"/>
+        <segue reference="ZiA-OS-e73"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -23,7 +23,7 @@
             </objects>
             <point key="canvasLocation" x="-342" y="80"/>
         </scene>
-        <!--Playing Card Game View Controller - Item-->
+        <!--Playing Card Game View Controller - Playing Card-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="PlayingCardGameViewController" sceneMemberID="viewController">
@@ -431,7 +431,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="GPl-ai-8eB"/>
+                    <tabBarItem key="tabBarItem" title="Playing Card" id="GPl-ai-8eB"/>
                     <navigationItem key="navigationItem" id="vKs-pb-3Fa"/>
                     <connections>
                         <outlet property="historyLabel" destination="NeJ-Of-byg" id="Idl-Ae-kOw"/>
@@ -473,7 +473,7 @@
             </objects>
             <point key="canvasLocation" x="231" y="-328"/>
         </scene>
-        <!--Set Card Game View Controller - Item-->
+        <!--Set Card Game View Controller - Set-->
         <scene sceneID="gJM-DW-dgY">
             <objects>
                 <viewController id="Oxi-aG-fYW" customClass="SetCardGameViewController" sceneMemberID="viewController">
@@ -881,7 +881,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="eNt-of-B2U"/>
+                    <tabBarItem key="tabBarItem" title="Set" id="eNt-of-B2U"/>
                     <navigationItem key="navigationItem" id="7oC-UQ-o7e"/>
                     <connections>
                         <outlet property="historyLabel" destination="SfL-HE-PI8" id="pHA-nm-Zoc"/>

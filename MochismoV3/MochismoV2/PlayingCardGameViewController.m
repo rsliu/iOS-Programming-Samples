@@ -17,10 +17,6 @@
 
 @implementation PlayingCardGameViewController
 
--(void) viewDidLoad {
-    [super viewDidLoad];
-}
-
 -(Deck*) createDeck {
     return [[PlayingCardDeck alloc] init];
 }

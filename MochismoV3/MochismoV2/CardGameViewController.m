@@ -91,6 +91,7 @@
 
 -(void) updateCardButtons
 {
+    // Virtual function. Detailed implementation is in subclasses
 }
 
 -(void) updateUI

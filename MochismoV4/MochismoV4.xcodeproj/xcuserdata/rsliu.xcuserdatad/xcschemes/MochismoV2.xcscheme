@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3A17E12E188D87F200D909A2"
-               BuildableName = "MochismoV3.app"
+               BuildableName = "MochismoV4.app"
                BlueprintName = "MochismoV4"
                ReferencedContainer = "container:MochismoV4.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3A17E14F188D87F200D909A2"
-               BuildableName = "MochismoV3Tests.xctest"
+               BuildableName = "MochismoV4Tests.xctest"
                BlueprintName = "MochismoV4Tests"
                ReferencedContainer = "container:MochismoV4.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3A17E12E188D87F200D909A2"
-            BuildableName = "MochismoV3.app"
+            BuildableName = "MochismoV4.app"
             BlueprintName = "MochismoV4"
             ReferencedContainer = "container:MochismoV4.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3A17E12E188D87F200D909A2"
-            BuildableName = "MochismoV3.app"
+            BuildableName = "MochismoV4.app"
             BlueprintName = "MochismoV4"
             ReferencedContainer = "container:MochismoV4.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3A17E12E188D87F200D909A2"
-            BuildableName = "MochismoV3.app"
+            BuildableName = "MochismoV4.app"
             BlueprintName = "MochismoV4"
             ReferencedContainer = "container:MochismoV4.xcodeproj">
          </BuildableReference>

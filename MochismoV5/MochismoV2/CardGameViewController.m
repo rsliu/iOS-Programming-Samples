@@ -7,7 +7,6 @@
 //
 
 #import "CardGameViewController.h"
-#import "HistoryViewController.h"
 
 // It is sort of unfortunate that we are importing PlayingCardDeck into this class since it is otherwise a generic card matching game Controller.
 //In other words, there’s really nothing that would prevent it from working with other Decks of other kinds of cards than PlayingCards.
@@ -137,24 +136,5 @@
 
 - (IBAction)sliderValueChanged:(UISlider *)sender {
     [self updateHistoryLabel:(int) sender.value - 1];
-}
-
--(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"History"]) {
-        if ([segue.destinationViewController isKindOfClass:[HistoryViewController class]]) {
-            HistoryViewController* hvc = (HistoryViewController*) segue.destinationViewController;
-            hvc.history = [self makeHistoryList];
-        }
-    }
-}
-
--(NSAttributedString*) makeHistoryList {
-    NSMutableAttributedString* history = [[NSMutableAttributedString alloc] init];
-    
-    for(NSAttributedString* historyEntry in self.gameHistory) {
-        [history appendAttributedString:historyEntry];
-        [history appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n" attributes:nil]];
-    }
-    return history;
 }
 @end

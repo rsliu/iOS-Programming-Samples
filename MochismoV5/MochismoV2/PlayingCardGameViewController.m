@@ -42,7 +42,7 @@
             NSUInteger cardIndex = [self.cardButtons indexOfObject:cardButton];
             
             // Get the card object
-            PlayingCard* card = [self.game cardAtIndex:cardIndex];
+            PlayingCard* card = (PlayingCard*)[self.game cardAtIndex:cardIndex];
             playingCardButton.rank = card.rank;
             playingCardButton.suit = card.suit;
             playingCardButton.matched = card.isMatched;

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3A0EFA8918DF937B009B75F8 /* SetCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0EFA8818DF937B009B75F8 /* SetCard.m */; };
-		3A118BB019003E0B003BC665 /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A118BAF19003E0B003BC665 /* HistoryViewController.m */; };
 		3A17E133188D87F200D909A2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A17E132188D87F200D909A2 /* Foundation.framework */; };
 		3A17E135188D87F200D909A2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A17E134188D87F200D909A2 /* CoreGraphics.framework */; };
 		3A17E137188D87F200D909A2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A17E136188D87F200D909A2 /* UIKit.framework */; };
@@ -47,8 +46,6 @@
 /* Begin PBXFileReference section */
 		3A0EFA8718DF937B009B75F8 /* SetCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetCard.h; sourceTree = "<group>"; };
 		3A0EFA8818DF937B009B75F8 /* SetCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetCard.m; sourceTree = "<group>"; };
-		3A118BAE19003E0B003BC665 /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
-		3A118BAF19003E0B003BC665 /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
 		3A17E12F188D87F200D909A2 /* MochismoV5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MochismoV5.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A17E132188D87F200D909A2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3A17E134188D87F200D909A2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -147,8 +144,6 @@
 			children = (
 				3A17E167188D880E00D909A2 /* Model */,
 				3A17E144188D87F200D909A2 /* Main.storyboard */,
-				3A118BAE19003E0B003BC665 /* HistoryViewController.h */,
-				3A118BAF19003E0B003BC665 /* HistoryViewController.m */,
 				3A17E147188D87F200D909A2 /* CardGameViewController.h */,
 				3A17E148188D87F200D909A2 /* CardGameViewController.m */,
 				3A90893F18DF86F500D700CD /* PlayingCardGameViewController.h */,
@@ -321,7 +316,6 @@
 				3A17E143188D87F200D909A2 /* CardGameAppDelegate.m in Sources */,
 				3AD4E83018E04035006A1451 /* SetCardDeck.m in Sources */,
 				3A17E149188D87F200D909A2 /* CardGameViewController.m in Sources */,
-				3A118BB019003E0B003BC665 /* HistoryViewController.m in Sources */,
 				3A0EFA8918DF937B009B75F8 /* SetCard.m in Sources */,
 				3AFFAE06188D90E0009ADCDC /* CardMatchingGame.m in Sources */,
 				3A17E172188D883C00D909A2 /* PlayingCardDeck.m in Sources */,

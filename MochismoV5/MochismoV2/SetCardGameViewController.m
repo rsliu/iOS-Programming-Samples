@@ -18,12 +18,6 @@
 
 
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    [self updateCardButtons];
-}
-
 -(Deck*) createDeck {
     return [[SetCardDeck alloc] init];
 }
@@ -39,7 +33,7 @@
 }
 
 -(void) updateCardButtons {
-    for(UIButton* cardButton in self.cardButtons) {
+    /*for(UIButton* cardButton in self.cardButtons) {
         // Find out card index
         NSUInteger cardIndex = [self.cardButtons indexOfObject:cardButton];
         
@@ -55,7 +49,7 @@
         cardButton.enabled = !card.isMatched;
         
         //cardButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    }
+    }*/
 }
 
 -(NSAttributedString*) attributedContentOfCard:(Card*) card

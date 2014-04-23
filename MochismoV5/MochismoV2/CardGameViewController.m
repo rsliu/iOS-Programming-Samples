@@ -26,7 +26,6 @@
 
 @implementation CardGameViewController
 
-
 - (NSMutableArray*) gameHistory {
     if (!_gameHistory) {
         _gameHistory = [[NSMutableArray alloc] init];
@@ -43,10 +42,25 @@
     return _chosenCards;
 }
 
+-(void) viewDidLoad {
+    [super viewDidLoad];
+    
+    // Setup gesture recognizer
+    for(UIView* view in self.cardButtons) {
+        UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchCardButton:)];
+        [tapRecognizer setNumberOfTouchesRequired:1];
+        [tapRecognizer setNumberOfTapsRequired:1];
+        [view addGestureRecognizer:tapRecognizer];
+    }
+    
+    // Display card back or card content
+    [self updateCardButtons];
+}
+
 // Button click event handler
-- (IBAction) touchCardButton:(UIButton *)sender {
+- (IBAction) touchCardButton:(UITapGestureRecognizer *)sender {
     // Find out the index of the button being clicked
-    NSUInteger chosenIndex = [self.cardButtons indexOfObject:sender];
+    NSUInteger chosenIndex = [self.cardButtons indexOfObject:sender.view];
     Card* card = [self.game cardAtIndex:chosenIndex];
     
     NSUInteger score = self.game.score;

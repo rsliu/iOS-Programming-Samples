@@ -86,6 +86,7 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
+
     // Create a UIBezierPath and make it as big as possible and with a dynamic corner radius
     UIBezierPath* roundedRect =
         [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:[self cornerRadius]];
@@ -94,7 +95,7 @@
     [roundedRect addClip];
     
     // Set the background to white
-    [[UIColor whiteColor] setFill]; // Set fill color
+    [[[UIColor whiteColor] colorWithAlphaComponent:(self.isMatched)?0.8:1.0] setFill]; // Set fill color
     UIRectFill(self.bounds); // Fill the rectangle
     
     // Draw boundary of the card
@@ -111,7 +112,7 @@
                                            self.bounds.size.width * (1.0-self.faceCardScaleFactor),
                                            self.bounds.size.height * (1.0-self.faceCardScaleFactor));
             // Draw the image in the specified rect
-            [faceImage drawInRect:imageRect];
+            [faceImage drawInRect:imageRect blendMode:kCGBlendModeNormal alpha:(self.isMatched)? 0.3:1.0];
         } else {
             [self drawPips];
         }

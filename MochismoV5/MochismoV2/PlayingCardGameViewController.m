@@ -10,6 +10,7 @@
 #import "PlayingCard.h"
 #import "PlayingCardDeck.h"
 #import "CardMatchingGame.h"
+#import "PlayingCardView.h"
 
 @interface PlayingCardGameViewController ()
 @property (strong, nonatomic) CardMatchingGame* game;
@@ -33,21 +34,20 @@
 
 
 -(void) updateCardButtons {
-    for(UIButton* cardButton in self.cardButtons) {
+    for(UIView* cardButton in self.cardButtons) {
         // Find out card index
-        NSUInteger cardIndex = [self.cardButtons indexOfObject:cardButton];
-        
-        // Get the card object
-        Card* card = [self.game cardAtIndex:cardIndex];
-        //[cardButton setTitle:((card.isChosen)? card.contents:@"") forState:UIControlStateNormal];
-        
-        // Lab #3
-        NSAttributedString* content = (card.isChosen)? [self attributedContentOfCard:card]: nil;
-        [cardButton setAttributedTitle:content forState:UIControlStateNormal];
-        
-        UIImage* image = [UIImage imageNamed:((card.isChosen)? @"BlankCard":@"stanford")];
-        [cardButton setBackgroundImage:image forState:UIControlStateNormal];
-        cardButton.enabled = !card.isMatched;
+        if ([cardButton isKindOfClass:[PlayingCardView class]]) {
+            PlayingCardView* playingCardButton = (PlayingCardView*) cardButton;
+            
+            NSUInteger cardIndex = [self.cardButtons indexOfObject:cardButton];
+            
+            // Get the card object
+            PlayingCard* card = [self.game cardAtIndex:cardIndex];
+            playingCardButton.rank = card.rank;
+            playingCardButton.suit = card.suit;
+            playingCardButton.matched = card.isMatched;
+            playingCardButton.faceUp = card.isChosen || card.isMatched;
+        }
     }
 }
 

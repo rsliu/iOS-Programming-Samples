@@ -10,5 +10,6 @@
 #import "CardMatchingGame.h"
 
 @interface CardGameViewController : UIViewController
-@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
+@property (strong, nonatomic) IBOutletCollection(UIView) NSArray *cardButtons;
+
 @end

@@ -43,10 +43,15 @@
             
             // Get the card object
             SetCard* card = (SetCard*)[self.game cardAtIndex:cardIndex];
-            setCardButton.number = card.number;
-            setCardButton.color = card.color;
-            setCardButton.symbol = card.symbol;
-            setCardButton.shading = card.shading;
+            if (card.isMatched) {
+                [setCardButton removeFromSuperview];
+            } else {
+                setCardButton.number = card.number;
+                setCardButton.color = card.color;
+                setCardButton.symbol = card.symbol;
+                setCardButton.shading = card.shading;
+                setCardButton.chosen = card.isChosen;
+            }
         }
     }
 }

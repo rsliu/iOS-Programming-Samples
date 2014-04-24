@@ -62,7 +62,7 @@
     [roundedRect addClip];
     
     // Set the background to white
-    [[[UIColor whiteColor] colorWithAlphaComponent:(self.isMatched)?0.8:1.0] setFill]; // Set fill color
+    [[[UIColor whiteColor] colorWithAlphaComponent:(self.isChosen)?0.5:1.0] setFill]; // Set fill color
     UIRectFill(self.bounds); // Fill the rectangle
     
     // Draw boundary of the card
@@ -88,12 +88,10 @@
     }
 }
 
-- (void)pushContextAndRotateUpsideDown
+- (void)pushContext
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSaveGState(context);
-    CGContextTranslateCTM(context, self.bounds.size.width, self.bounds.size.height);
-    CGContextRotateCTM(context, M_PI);
 }
 
 - (void)popContext
@@ -160,7 +158,7 @@
     [self drawShadingInPath:path];
 
     // Stroke
-    [[self colorAsObject] setStroke];
+    [[[self colorAsObject] colorWithAlphaComponent:(self.isChosen)? 0.5:1] setStroke];
     [path stroke];
 }
 
@@ -168,11 +166,12 @@
 
 -(void) drawShadingInPath:(UIBezierPath*) path
 {
+    [self pushContext];
     [path addClip];
     
     if (self.shading == 1) {
         // fill with solid color
-        [[self colorAsObject] setFill];
+        [[[self colorAsObject] colorWithAlphaComponent:(self.isChosen)? 0.5:1] setFill];
         [path fill];
     } else if (self.shading == 2) {
         // draw strips
@@ -186,9 +185,10 @@
             point.x += dist;
         }
         
-        [[self colorAsObject] setStroke];
+        [[[self colorAsObject] colorWithAlphaComponent:(self.isChosen)? 0.5:1] setStroke];
         [stripPath stroke];
     }
+    [self popContext];
 }
 
 #pragma mark - Initialization // Group setup codes

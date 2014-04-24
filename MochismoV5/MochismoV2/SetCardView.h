@@ -13,5 +13,5 @@
 @property (nonatomic) NSUInteger symbol;
 @property (nonatomic) NSUInteger shading;
 @property (nonatomic) NSUInteger color;
-@property (nonatomic, getter = isMatched) BOOL matched;
+@property (nonatomic, getter = isChosen) BOOL chosen;
 @end

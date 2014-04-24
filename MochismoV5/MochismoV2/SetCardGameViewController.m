@@ -9,6 +9,7 @@
 #import "SetCardGameViewController.h"
 #import "SetCardDeck.h"
 #import "SetCard.h"
+#import "SetCardView.h"
 
 @interface SetCardGameViewController ()
 @property (strong, nonatomic) CardMatchingGame* game;
@@ -33,23 +34,21 @@
 }
 
 -(void) updateCardButtons {
-    /*for(UIButton* cardButton in self.cardButtons) {
+    for(UIView* cardButton in self.cardButtons) {
         // Find out card index
-        NSUInteger cardIndex = [self.cardButtons indexOfObject:cardButton];
-        
-        // Get the card object
-        Card* card = [self.game cardAtIndex:cardIndex];
-
-        // Update the contents
-        [cardButton setAttributedTitle:[self attributedContentOfCard:card] forState:UIControlStateNormal];
-        
-        // Update background color according to their states
-        [cardButton setBackgroundImage:nil forState:UIControlStateNormal];
-        cardButton.backgroundColor = (card.isChosen)? [UIColor grayColor]:[UIColor whiteColor];
-        cardButton.enabled = !card.isMatched;
-        
-        //cardButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    }*/
+        if ([cardButton isKindOfClass:[SetCardView class]]) {
+            SetCardView* setCardButton = (SetCardView*) cardButton;
+            
+            NSUInteger cardIndex = [self.cardButtons indexOfObject:cardButton];
+            
+            // Get the card object
+            SetCard* card = (SetCard*)[self.game cardAtIndex:cardIndex];
+            setCardButton.number = card.number;
+            setCardButton.color = card.color;
+            setCardButton.symbol = card.symbol;
+            setCardButton.shading = card.shading;
+        }
+    }
 }
 
 -(NSAttributedString*) attributedContentOfCard:(Card*) card

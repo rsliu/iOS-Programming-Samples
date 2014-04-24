@@ -88,8 +88,6 @@
     }
 }
 
-#define PIP_FONT_SCALE_FACTOR 0.012
-
 - (void)pushContextAndRotateUpsideDown
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -110,23 +108,44 @@
 
 - (UIBezierPath*) symbolAsPathInRect:(CGRect) rect
 {
-    UIBezierPath *path = [UIBezierPath bezierPathWithRect:rect];
+    UIBezierPath *path;
     
-    if (self.symbol == 1) {
-
-    } else if (self.symbol == 2) {
-
-    } else if (self.symbol == 3) {
+    if (self.symbol == 1) { // Oval
+        path = [UIBezierPath bezierPathWithOvalInRect:rect];
+        return path;
+    } else if (self.symbol == 2) { // Diamond
+        path = [[UIBezierPath alloc] init];
+        [path moveToPoint:CGPointMake(rect.origin.x + rect.size.width / 2, rect.origin.y)];
+        [path addLineToPoint:CGPointMake(rect.origin.x + rect.size.width, rect.origin.y + rect.size.height / 2)];
+        [path addLineToPoint:CGPointMake(rect.origin.x + rect.size.width / 2, rect.origin.y + rect.size.height)];
+        [path addLineToPoint:CGPointMake(rect.origin.x, rect.origin.y + rect.size.height / 2)];
+        [path closePath];
+        return path;
+    } else if (self.symbol == 3) { //squiggle
+        path = [[UIBezierPath alloc] init];
+        [path moveToPoint:CGPointMake(rect.origin.x, rect.origin.y + rect.size.height)];
+        [path addCurveToPoint:CGPointMake(rect.origin.x + rect.size.width, rect.origin.y)
+                controlPoint1:CGPointMake(rect.origin.x + rect.size.width / 4, rect.origin.y - rect.size.height)
+                controlPoint2:CGPointMake(rect.origin.x + 3 * rect.size.width / 4, rect.origin.y + rect.size.height / 2)];
         
+        [path moveToPoint:CGPointMake(rect.origin.x + rect.size.width, rect.origin.y)];
+        [path addCurveToPoint:CGPointMake(rect.origin.x, rect.origin.y + rect.size.height)
+                controlPoint1:CGPointMake(rect.origin.x + 3* rect.size.width / 4, rect.origin.y + 2 * rect.size.height)
+                controlPoint2:CGPointMake(rect.origin.x + rect.size.width / 4, rect.origin.y + rect.size.height / 2)];
+        return path;
     }
     
     return nil;
 }
 
-- (void)drawSymbolsWithVerticalOffset:(CGFloat)voffset
+#define SYMBOL_WIDTH_SCALE_FACTOR 0.6
+#define SYMBOL_HEIGHT_SCALE_FACTOR 0.125
+
+- (void)drawSymbolsWithVerticalOffset:(CGFloat) voffset
 {
     // Calculate symbol width and height
-    CGSize size;
+    CGSize size = CGSizeMake(self.bounds.size.width * SYMBOL_WIDTH_SCALE_FACTOR,
+                             self.bounds.size.height * SYMBOL_HEIGHT_SCALE_FACTOR);
     
     // Calculate the origin of the symbol
     CGPoint middle = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
@@ -135,16 +154,62 @@
     
     if (voffset) {
         rect.origin.y += 2.0 * voffset * self.bounds.size.height;
-        [path moveToPoint:rect.origin];
+        [path appendPath:[self symbolAsPathInRect:rect]];
     }
-
-    // Set fill and stroke colors
-    [[UIColor whiteColor] setFill];
-    [[self colorAsObject] setStroke];
     
-    // Fill and stroke the path
-    [path fill];
+    [self drawShadingInPath:path];
+
+    // Stroke
+    [[self colorAsObject] setStroke];
     [path stroke];
 }
 
+#define STRIP_DISTANCE_FACTOR 20
+
+-(void) drawShadingInPath:(UIBezierPath*) path
+{
+    [path addClip];
+    
+    if (self.shading == 1) {
+        // fill with solid color
+        [[self colorAsObject] setFill];
+        [path fill];
+    } else if (self.shading == 2) {
+        // draw strips
+        UIBezierPath* stripPath = [[UIBezierPath alloc] init];
+        CGFloat dist = self.bounds.size.width / STRIP_DISTANCE_FACTOR;
+        CGPoint point = CGPointMake(0, 0);
+        
+        while(point.x < self.bounds.size.width) {
+            [stripPath moveToPoint:point];
+            [stripPath addLineToPoint:CGPointMake(point.x, self.bounds.size.height)];
+            point.x += dist;
+        }
+        
+        [[self colorAsObject] setStroke];
+        [stripPath stroke];
+    }
+}
+
+#pragma mark - Initialization // Group setup codes
+
+-(void) setup
+{
+    // Stop the background from being white and opaque
+    // including the rounded corners
+    self.backgroundColor = nil;
+    self.opaque = NO;
+    // A flag used to determine how a view lays out its content when its bounds change
+    // The UIViewContentModeRedraw option means that redisplay the view when the bounds
+    // change by invoking the setNeedsDisplay method.
+    self.contentMode = UIViewContentModeRedraw;
+    
+}
+
+// We are gonna create the view from the storyboard
+// So do the setup here in the awakeFromNib
+-(void) awakeFromNib
+{
+    [self setup];
+}
 @end

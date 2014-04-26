@@ -79,9 +79,12 @@
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self createCardButtons];
-    // Deal cards with animation
-    [self dealCards];
+    
+    if ([self.cardButtons count] == 0) {
+        [self createCardButtons];
+        // Deal cards with animation
+        [self dealCards];
+    }
 }
 
 // Button click event handler

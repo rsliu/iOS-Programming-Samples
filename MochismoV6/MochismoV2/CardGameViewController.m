@@ -25,7 +25,8 @@
 
 @implementation CardGameViewController
 
-- (NSMutableArray*) gameHistory {
+- (NSMutableArray*) gameHistory
+{
     if (!_gameHistory) {
         _gameHistory = [[NSMutableArray alloc] init];
     }
@@ -33,7 +34,17 @@
     return _gameHistory;
 }
 
-- (NSMutableArray*) chosenCards {
+- (NSMutableArray*) cardButtons
+{
+    if (!_cardButtons) {
+        _cardButtons = [[NSMutableArray alloc] init];
+    }
+    
+    return _cardButtons;
+}
+
+- (NSMutableArray*) chosenCards
+{
     if (!_chosenCards) {
         _chosenCards = [[NSMutableArray alloc] init];
     }
@@ -41,23 +52,41 @@
     return _chosenCards;
 }
 
--(void) viewDidLoad {
-    [super viewDidLoad];
+// Must be called after the bounds of the view is set
+-(void) createCardButtons
+{
+    // Create card views
+    CGRect rect;
+    rect.origin = CGPointMake(self.view.bounds.size.width / 2 - 20, self.view.bounds.size.height / 2 - 30);
+    rect.size.width = 40;
+    rect.size.height = 60;
     
-    // Setup gesture recognizer
-    for(UIView* view in self.cardButtons) {
-        UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchCardButton:)];
-        [tapRecognizer setNumberOfTouchesRequired:1];
-        [tapRecognizer setNumberOfTapsRequired:1];
-        [view addGestureRecognizer:tapRecognizer];
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 6; j++) {
+            UIView* view = [self createCardViewWithFrame:rect];
+            [self.cardButtons addObject:view];
+            [self.view addSubview:view];
+            
+            // Setup gesture recognizer
+            UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchCardButton:)];
+            [tapRecognizer setNumberOfTouchesRequired:1];
+            [tapRecognizer setNumberOfTapsRequired:1];
+            [view addGestureRecognizer:tapRecognizer];
+        }
     }
-    
-    // Display card back or card content
-    [self updateCardButtons];
+}
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self createCardButtons];
+    // Deal cards with animation
+    [self dealCards];
 }
 
 // Button click event handler
-- (IBAction) touchCardButton:(UITapGestureRecognizer *)sender {
+- (IBAction) touchCardButton:(UITapGestureRecognizer *)sender
+{
     // Find out the index of the button being clicked
     NSUInteger chosenIndex = [self.cardButtons indexOfObject:sender.view];
     Card* card = [self.game cardAtIndex:chosenIndex];
@@ -117,11 +146,47 @@
     [self updateHistoryLabel:(self.slider.maximumValue - 1)];
 }
 
+-(UIView*) createCardViewWithFrame:(CGRect)rect
+{
+    // pure virtual
+    return nil;
+}
+
+-(void) dealCards
+{
+    CGRect rect;
+    
+    // Draw card content before starting the animation
+    [self updateUI];
+    
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 6; j++) {
+            UIView* view = [self.cardButtons objectAtIndex:i*6+j];
+            rect = view.frame;
+            rect.origin.x = 15 + 50 * j;
+            rect.origin.y = 50 + 70 * i;
+            
+            [UIView animateWithDuration:1 delay:0.1*(i*5+j)
+                             options:UIViewAnimationOptionBeginFromCurrentState
+                             animations:^{ view.frame = rect; } completion:nil];
+        }
+    }
+}
+
 - (IBAction)restartGame:(UIButton *)sender {
     self.game = nil;
     self.gameHistory = nil;
     self.chosenCards = nil;
-    [self updateUI];
+    
+    
+    // Remove card buttons
+    for(UIView* view in self.cardButtons) {
+        [view removeFromSuperview];
+    }
+    [self.cardButtons removeAllObjects];
+    
+    [self createCardButtons];
+    [self dealCards];
 }
 
 - (void) updateHistoryLabel:(int) recordIndex {

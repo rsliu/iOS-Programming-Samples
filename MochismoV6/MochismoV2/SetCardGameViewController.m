@@ -33,6 +33,11 @@
     return _game;
 }
 
+-(UIView*) createCardViewWithFrame:(CGRect)rect
+{
+    return [[SetCardView alloc] initWithFrame:rect];
+}
+
 -(void) updateCardButtons {
     for(UIView* cardButton in self.cardButtons) {
         // Find out card index

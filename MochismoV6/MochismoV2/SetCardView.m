@@ -14,7 +14,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        [self setup];
     }
     return self;
 }
@@ -212,4 +212,5 @@
 {
     [self setup];
 }
+
 @end

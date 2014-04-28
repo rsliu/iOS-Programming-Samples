@@ -168,10 +168,12 @@
             rect = view.frame;
             rect.origin.x = 15 + 50 * j;
             rect.origin.y = 50 + 70 * i;
-            
+
             [UIView animateWithDuration:1 delay:0.1*(i*5+j)
                              options:UIViewAnimationOptionBeginFromCurrentState
-                             animations:^{ view.frame = rect; } completion:nil];
+                             animations:^{
+                                 view.frame = rect;
+                             } completion:nil];
         }
     }
 }

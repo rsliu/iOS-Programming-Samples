@@ -61,7 +61,6 @@
 // Stream event handler
 -(void)stream:(NSStream *)aStream handleEvent:(NSStreamEvent)eventCode
 {
-    NSMutableData *data;
     uint8_t buf[1024];
     NSInteger len = 0;
     
@@ -69,7 +68,6 @@
         case NSStreamEventHasBytesAvailable:
             {
                 // Data received
-                data = [[NSMutableData alloc] init];
                 len = [(NSInputStream *) aStream read:buf maxLength:1024];
                 if (len) {
                     NSMutableString *text = [[NSMutableString alloc] initWithString:self.textView.text];

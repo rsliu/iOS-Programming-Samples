@@ -95,16 +95,17 @@
 
 - (void) animateRemovingDrops:(NSArray*) dropsToRemove
 {
-    [UIView animateWithDuration:1.0 animations:^{
-        for(UIView *drop in dropsToRemove) {
-            int x = (arc4random()%(int)(self.gameView.bounds.size.width*5)) - (int) self.gameView.bounds.size.width*2;
-            int y = self.gameView.bounds.size.height;
-            drop.center = CGPointMake(x, -y);
-        }
-    }
-    completion:^(BOOL finished) {
-        [dropsToRemove makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    }];
+    [UIView animateWithDuration:1.0
+         animations:^{
+             for(UIView *drop in dropsToRemove) {
+                 int x = (arc4random() %5 - 2) * (int)(self.gameView.bounds.size.width);
+                 int y = self.gameView.bounds.size.height;
+                 drop.center = CGPointMake(x, -y);
+             }
+         }
+         completion:^(BOOL finished) {
+             [dropsToRemove makeObjectsPerformSelector:@selector(removeFromSuperview)];
+         }];
 }
 
 - (void) dynamicAnimatorWillResume:(UIDynamicAnimator *)animator

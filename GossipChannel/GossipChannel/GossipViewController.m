@@ -24,7 +24,8 @@
 // To make text field dismissable
 -(BOOL) textFieldShouldReturn:(UITextField *)textField
 {
-    [textField resignFirstResponder];
+    //[textField resignFirstResponder];
+    [self performSegueWithIdentifier:@"connect" sender:self];
     return YES;
 }
 
@@ -56,6 +57,10 @@
             cmvc.port = 8888;
         }
     }
+}
+
+- (IBAction)tap:(UITapGestureRecognizer *)sender {
+    [self.username resignFirstResponder];
 }
 
 @end

@@ -124,6 +124,7 @@
     [self.textField setEnabled:NO];
     [self.textField setDelegate:self];
 }
+
 -(void) viewWillDisappear:(BOOL)animated
 {
     [self.iStream close];

@@ -89,6 +89,9 @@
             break;
             
         case NSStreamEventOpenCompleted:
+            if (aStream == self.oStream) {
+                self.textField.enabled = YES;
+            }
             break;
             
         case NSStreamEventEndEncountered:
@@ -135,7 +138,6 @@
 -(BOOL) textFieldShouldReturn:(UITextField *)textField
 {
     [self sendMessage];
-    [textField resignFirstResponder];
     return YES;
 }
 

@@ -24,11 +24,12 @@
 {
     [super viewDidLoad];
     
-    LessBoringFlowLayout *layout = [[LessBoringFlowLayout alloc] init];
+    //LessBoringFlowLayout *layout = [[LessBoringFlowLayout alloc] init];
+    LessBoringFlowLayout* layout = (LessBoringFlowLayout*) self.collectionView.collectionViewLayout;
     layout.minimumInteritemSpacing = 2.0f;
+    layout.minimumLineSpacing = 10.0;
     layout.itemSize = CGSizeMake(40, 60);
-    [self.collectionView.viewForBaselineLayout.layer setSpeed:0.1f];
-    [self.collectionView setCollectionViewLayout:layout];
+    [self.collectionView.viewForBaselineLayout.layer setSpeed:0.2f];
 }
 
 

@@ -25,7 +25,11 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
+<<<<<<< HEAD
+            filePath = "MochismoV7/Model/CardMatchingGame.m"
+=======
             filePath = "MochismoV2/CardMatchingGame.m"
+>>>>>>> 8eccbe9937742662720077f8d5536ffbfa5c1b30
             timestampString = "417370738.083686"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
@@ -41,7 +45,11 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
+<<<<<<< HEAD
+            filePath = "MochismoV7/Model/CardMatchingGame.m"
+=======
             filePath = "MochismoV2/CardMatchingGame.m"
+>>>>>>> 8eccbe9937742662720077f8d5536ffbfa5c1b30
             timestampString = "417370739.669687"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
@@ -57,7 +65,11 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
+<<<<<<< HEAD
+            filePath = "MochismoV7/Model/CardMatchingGame.m"
+=======
             filePath = "MochismoV2/CardMatchingGame.m"
+>>>>>>> 8eccbe9937742662720077f8d5536ffbfa5c1b30
             timestampString = "422472571.952664"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
@@ -218,11 +230,19 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MochismoV2/SetCardGameViewController.m"
+<<<<<<< HEAD
+            timestampString = "423042689.817283"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+=======
             timestampString = "422723071.827975"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "52"
             endingLineNumber = "52"
+>>>>>>> 8eccbe9937742662720077f8d5536ffbfa5c1b30
             landmarkName = "-updateCell:usingCardAtIndex:"
             landmarkType = "5">
          </BreakpointContent>
@@ -298,11 +318,19 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MochismoV2/SetCardGameViewController.m"
+<<<<<<< HEAD
+            timestampString = "423042689.817283"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+=======
             timestampString = "422728728.692868"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "68"
             endingLineNumber = "68"
+>>>>>>> 8eccbe9937742662720077f8d5536ffbfa5c1b30
             landmarkName = "-collectionView:didSelectItemAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -314,11 +342,19 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MochismoV2/SetCardGameViewController.m"
+<<<<<<< HEAD
+            timestampString = "423042689.817283"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+=======
             timestampString = "422728728.692868"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "70"
             endingLineNumber = "70"
+>>>>>>> 8eccbe9937742662720077f8d5536ffbfa5c1b30
             landmarkName = "-collectionView:didSelectItemAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -329,12 +365,21 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
+<<<<<<< HEAD
+            filePath = "MochismoV7/LessBoringFlowLayout.m"
+            timestampString = "423070832.995605"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
+=======
             filePath = "MochismoV2/LessBoringFlowLayout.m"
             timestampString = "422724328.428525"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "41"
             endingLineNumber = "41"
+>>>>>>> 8eccbe9937742662720077f8d5536ffbfa5c1b30
             landmarkName = "-prepareForCollectionViewUpdates:"
             landmarkType = "5">
          </BreakpointContent>
@@ -345,12 +390,21 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
+<<<<<<< HEAD
+            filePath = "MochismoV7/LessBoringFlowLayout.m"
+            timestampString = "423070832.995605"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
+=======
             filePath = "MochismoV2/LessBoringFlowLayout.m"
             timestampString = "422729164.906958"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "69"
             endingLineNumber = "69"
+>>>>>>> 8eccbe9937742662720077f8d5536ffbfa5c1b30
             landmarkName = "-finalLayoutAttributesForDisappearingItemAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -361,12 +415,21 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
+<<<<<<< HEAD
+            filePath = "MochismoV7/LessBoringFlowLayout.m"
+            timestampString = "423070832.995605"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "205"
+            endingLineNumber = "205"
+=======
             filePath = "MochismoV2/LessBoringFlowLayout.m"
             timestampString = "422729286.183276"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "72"
             endingLineNumber = "72"
+>>>>>>> 8eccbe9937742662720077f8d5536ffbfa5c1b30
             landmarkName = "-finalLayoutAttributesForDisappearingItemAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -377,12 +440,21 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
+<<<<<<< HEAD
+            filePath = "MochismoV7/LessBoringFlowLayout.m"
+            timestampString = "423070832.995605"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "191"
+            endingLineNumber = "191"
+=======
             filePath = "MochismoV2/LessBoringFlowLayout.m"
             timestampString = "422724575.719875"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "58"
             endingLineNumber = "58"
+>>>>>>> 8eccbe9937742662720077f8d5536ffbfa5c1b30
             landmarkName = "-initialLayoutAttributesForAppearingItemAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -393,12 +465,21 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
+<<<<<<< HEAD
+            filePath = "MochismoV7/LessBoringFlowLayout.m"
+            timestampString = "423070832.995605"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
+=======
             filePath = "MochismoV2/LessBoringFlowLayout.m"
             timestampString = "422726150.016535"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "61"
             endingLineNumber = "61"
+>>>>>>> 8eccbe9937742662720077f8d5536ffbfa5c1b30
             landmarkName = "-initialLayoutAttributesForAppearingItemAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -409,12 +490,21 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
+<<<<<<< HEAD
+            filePath = "MochismoV7/LessBoringFlowLayout.m"
+            timestampString = "423070832.995605"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "177"
+            endingLineNumber = "177"
+=======
             filePath = "MochismoV2/LessBoringFlowLayout.m"
             timestampString = "422724328.428525"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "44"
             endingLineNumber = "44"
+>>>>>>> 8eccbe9937742662720077f8d5536ffbfa5c1b30
             landmarkName = "-prepareForCollectionViewUpdates:"
             landmarkType = "5">
             <Locations>
@@ -455,12 +545,21 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
+<<<<<<< HEAD
+            filePath = "MochismoV7/LessBoringFlowLayout.m"
+            timestampString = "423070832.995605"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
+=======
             filePath = "MochismoV2/LessBoringFlowLayout.m"
             timestampString = "422726150.016535"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "60"
             endingLineNumber = "60"
+>>>>>>> 8eccbe9937742662720077f8d5536ffbfa5c1b30
             landmarkName = "-initialLayoutAttributesForAppearingItemAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -471,15 +570,123 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
+<<<<<<< HEAD
+            filePath = "MochismoV7/LessBoringFlowLayout.m"
+            timestampString = "423070832.995605"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
+=======
             filePath = "MochismoV2/LessBoringFlowLayout.m"
             timestampString = "422724328.428525"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "46"
             endingLineNumber = "46"
+>>>>>>> 8eccbe9937742662720077f8d5536ffbfa5c1b30
             landmarkName = "-prepareForCollectionViewUpdates:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
+<<<<<<< HEAD
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MochismoV7/LessBoringFlowLayout.m"
+            timestampString = "423070832.995605"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
+            landmarkName = "-prepareForCollectionViewUpdates:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MochismoV7/LessBoringFlowLayout.m"
+            timestampString = "423070832.995605"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
+            landmarkName = "-layoutAttributesForDecorationViewOfKind:atIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MochismoV7/LessBoringFlowLayout.m"
+            timestampString = "423050802.440787"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "-setup"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MochismoV7/Views/FrameView.m"
+            timestampString = "423047367.340822"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "-initWithFrame:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MochismoV7/LessBoringFlowLayout.m"
+            timestampString = "423056499.029898"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "-setup"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MochismoV7/LessBoringFlowLayout.m"
+            timestampString = "423070832.995605"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
+            landmarkName = "-prepareLayout"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+=======
+>>>>>>> 8eccbe9937742662720077f8d5536ffbfa5c1b30
    </Breakpoints>
 </Bucket>

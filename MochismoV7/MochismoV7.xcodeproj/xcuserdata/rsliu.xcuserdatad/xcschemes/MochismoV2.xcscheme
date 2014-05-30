@@ -15,7 +15,11 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3A17E12E188D87F200D909A2"
+<<<<<<< HEAD
+               BuildableName = "MochismoV7.app"
+=======
                BuildableName = "MochismoV6.app"
+>>>>>>> 8eccbe9937742662720077f8d5536ffbfa5c1b30
                BlueprintName = "MochismoV7"
                ReferencedContainer = "container:MochismoV7.xcodeproj">
             </BuildableReference>
@@ -33,7 +37,11 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3A17E14F188D87F200D909A2"
+<<<<<<< HEAD
+               BuildableName = "MochismoV7Tests.xctest"
+=======
                BuildableName = "MochismoV6Tests.xctest"
+>>>>>>> 8eccbe9937742662720077f8d5536ffbfa5c1b30
                BlueprintName = "MochismoV7Tests"
                ReferencedContainer = "container:MochismoV7.xcodeproj">
             </BuildableReference>
@@ -43,7 +51,11 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3A17E12E188D87F200D909A2"
+<<<<<<< HEAD
+            BuildableName = "MochismoV7.app"
+=======
             BuildableName = "MochismoV6.app"
+>>>>>>> 8eccbe9937742662720077f8d5536ffbfa5c1b30
             BlueprintName = "MochismoV7"
             ReferencedContainer = "container:MochismoV7.xcodeproj">
          </BuildableReference>
@@ -62,7 +74,11 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3A17E12E188D87F200D909A2"
+<<<<<<< HEAD
+            BuildableName = "MochismoV7.app"
+=======
             BuildableName = "MochismoV6.app"
+>>>>>>> 8eccbe9937742662720077f8d5536ffbfa5c1b30
             BlueprintName = "MochismoV7"
             ReferencedContainer = "container:MochismoV7.xcodeproj">
          </BuildableReference>
@@ -80,7 +96,11 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3A17E12E188D87F200D909A2"
+<<<<<<< HEAD
+            BuildableName = "MochismoV7.app"
+=======
             BuildableName = "MochismoV6.app"
+>>>>>>> 8eccbe9937742662720077f8d5536ffbfa5c1b30
             BlueprintName = "MochismoV7"
             ReferencedContainer = "container:MochismoV7.xcodeproj">
          </BuildableReference>

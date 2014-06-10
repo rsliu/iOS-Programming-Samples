@@ -2,8 +2,8 @@
 //  Photo.m
 //  Photomania
 //
-//  Created by CS193p Instructor.
-//  Copyright (c) 2011 Stanford University. All rights reserved.
+//  Created by Ren-Shiou Liu on 6/9/14.
+//  Copyright (c) 2014 Stanford University. All rights reserved.
 //
 
 #import "Photo.h"
@@ -12,10 +12,13 @@
 
 @implementation Photo
 
-@dynamic title;
-@dynamic subtitle;
-@dynamic unique;
 @dynamic imageURL;
+@dynamic subtitle;
+@dynamic title;
+@dynamic unique;
+@dynamic latitude;
+@dynamic longitude;
+@dynamic thumnailURL;
 @dynamic whoTook;
 
 @end

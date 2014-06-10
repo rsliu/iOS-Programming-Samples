@@ -39,6 +39,9 @@
         photo.subtitle = [flickrInfo valueForKeyPath:FLICKR_PHOTO_DESCRIPTION];
         photo.imageURL = [[FlickrFetcher urlForPhoto:flickrInfo format:FlickrPhotoFormatLarge] absoluteString];
         photo.whoTook = [Photographer photographerWithName:[flickrInfo objectForKey:FLICKR_PHOTO_OWNER] inManagedObjectContext:context];
+        photo.latitude = @([[flickrInfo objectForKey:FLICKR_LATITUDE] doubleValue]);
+        photo.longitude = @([[flickrInfo objectForKey:FLICKR_LONGITUDE] doubleValue]);
+        photo.thumnailURL = [[FlickrFetcher urlForPhoto:flickrInfo format:FlickrPhotoFormatSquare] absoluteString];
     } else {
         photo = [matches lastObject];
     }

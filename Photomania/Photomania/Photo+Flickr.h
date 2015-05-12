@@ -12,5 +12,5 @@
 
 + (Photo *)photoWithFlickrInfo:(NSDictionary *)flickrInfo
         inManagedObjectContext:(NSManagedObjectContext *)context;
-
++ (void) loadPhotosFromFlickrArray:(NSArray*) photos intoManagedObjectContext:(NSManagedObjectContext *) context;
 @end

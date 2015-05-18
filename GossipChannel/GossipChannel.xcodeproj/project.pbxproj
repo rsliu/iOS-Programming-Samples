@@ -386,6 +386,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GossipChannel/GossipChannel-Prefix.pch";
 				INFOPLIST_FILE = "GossipChannel/GossipChannel-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -399,6 +400,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GossipChannel/GossipChannel-Prefix.pch";
 				INFOPLIST_FILE = "GossipChannel/GossipChannel-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -463,6 +465,7 @@
 				3A021EE01917528E0018C135 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3A021EE11917528E0018C135 /* Build configuration list for PBXNativeTarget "GossipChannelTests" */ = {
 			isa = XCConfigurationList;
@@ -471,6 +474,7 @@
 				3A021EE31917528E0018C135 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

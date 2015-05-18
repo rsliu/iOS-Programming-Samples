@@ -14,30 +14,20 @@
 @property (strong, nonatomic) NSOutputStream *oStream;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) NSThread *thread;
 @end
 
 @implementation ChatViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void) setupConnection
 {
     CFReadStreamRef readStream = NULL;
     CFWriteStreamRef writeStream = NULL;
-    
-    self.textField.enabled = NO;
-    
     if (self.address) {
         CFStreamCreatePairWithSocketToHost(kCFAllocatorDefault,
                                            (__bridge CFStringRef) self.address,
-                                           self.port,
+                                           (UInt32) self.port,
                                            &readStream,
                                            &writeStream);
         
@@ -46,15 +36,16 @@
             CFWriteStreamSetProperty(writeStream, kCFStreamPropertyShouldCloseNativeSocket, kCFBooleanTrue);
             
             self.iStream = (__bridge NSInputStream *)readStream;
-            [self.iStream setDelegate:self];
+            self.iStream.delegate = self;
             [self.iStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
             [self.iStream open];
-            
             self.oStream = (__bridge NSOutputStream *)writeStream;
-            [self.oStream setDelegate:self];
+            self.oStream.delegate = self;
             [self.oStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
             [self.oStream open];
         }
+
+        while ([[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]]);
     }
 }
 
@@ -73,9 +64,12 @@
                     NSMutableString *text = [[NSMutableString alloc] initWithString:self.textView.text];
                     NSString *newMessage = [[NSString alloc] initWithBytes:buf length:len encoding:NSASCIIStringEncoding];
                     [text appendString:newMessage];
-                    self.textView.text = text;
-                    NSRange bottom = NSMakeRange(self.textView.text.length -1, 1);
-                    [self.textView scrollRangeToVisible:bottom];
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        self.textView.text = text;
+                        NSRange bottom = NSMakeRange(self.textView.text.length -1, 1);
+                        [self.textView scrollRangeToVisible:bottom];
+                    });
                 }
             }
             break;
@@ -89,8 +83,12 @@
             break;
             
         case NSStreamEventOpenCompleted:
-            if (aStream == self.oStream) {
-                self.textField.enabled = YES;
+            {
+                if (aStream == self.oStream) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        self.textField.enabled = YES;
+                    });
+                }
             }
             break;
             
@@ -101,31 +99,35 @@
             
         case NSStreamEventHasSpaceAvailable:
             {
-                self.textField.text = @"";
-                self.textField.enabled = YES;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.textField.text = @"";
+                    self.textField.enabled = YES;
+                });
             }
             break;
+            
         case NSStreamEventNone:
             break;
     }
 }
 
-- (void)sendMessage
+- (void) sendMessage
 {
     if (self.oStream) {
         NSString* messageToSend = [[NSString alloc] initWithFormat:@"%@: %@\r\n", self.username, self.textField.text];
         NSData *data = [[NSData alloc] initWithData:[messageToSend dataUsingEncoding:NSASCIIStringEncoding]];
         [self.oStream write:[data bytes] maxLength:[data length]];
-        self.textField.enabled = NO;
     }
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setupConnection];
-    [self.textField setEnabled:NO];
-    [self.textField setDelegate:self];
+    self.textField.enabled = NO;
+    self.textField.delegate = self;
+    [self registerForKeyboardNotifications];
+    self.thread = [[NSThread alloc] initWithTarget:self selector:@selector(setupConnection) object:nil];
+    [self.thread start];
 }
 
 -(void) viewWillDisappear:(BOOL)animated
@@ -137,20 +139,46 @@
 // To make text field dismissable
 -(BOOL) textFieldShouldReturn:(UITextField *)textField
 {
-    [self sendMessage];
+    self.textField.enabled = NO;
+    [self performSelector:@selector(sendMessage) onThread:self.thread withObject:nil waitUntilDone:false];
     return YES;
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField
+// Call this method somewhere in your view controller setup code.
+- (void)registerForKeyboardNotifications
 {
-    [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState
-                     animations:^{ self.view.frame = CGRectOffset(self.view.frame, 0, -240); } completion:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardDidShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillBeHidden:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+    
 }
 
-
-- (void)textFieldDidEndEditing:(UITextField *)textField
+// Called when the UIKeyboardDidShowNotification is sent.
+- (void)keyboardWasShown:(NSNotification*) aNotification
 {
-    [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState
-                     animations:^{ self.view.frame = CGRectOffset(self.view.frame, 0, 240); } completion:nil];
+    NSDictionary* info = [aNotification userInfo];
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
+    self.scrollView.contentInset = contentInsets;
+    
+    // If active text field is hidden by keyboard, scroll it so it's visible
+    CGRect aRect = self.view.frame;
+    aRect.size.height -= kbSize.height;
+    if (!CGRectContainsPoint(aRect, self.textField.frame.origin) ) {
+        [self.scrollView scrollRectToVisible:self.textField.frame animated:NO];
+    }
+}
+
+// Called when the UIKeyboardWillHideNotification is sent
+- (void)keyboardWillBeHidden:(NSNotification*) aNotification
+{
+    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    self.scrollView.contentInset = contentInsets;
+    self.scrollView.scrollIndicatorInsets = contentInsets;
 }
 @end

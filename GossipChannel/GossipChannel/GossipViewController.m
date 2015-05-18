@@ -10,7 +10,9 @@
 #import "ChatViewController.h"
 
 @interface GossipViewController ()
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UITextField *username;
+@property (weak, nonatomic) IBOutlet UIButton *btnConnect;
 @end
 
 @implementation GossipViewController
@@ -18,7 +20,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.username setDelegate:self];
+    self.username.delegate = self;
+    [self registerForKeyboardNotifications];
 }
 
 // To make text field dismissable
@@ -27,19 +30,6 @@
     //[textField resignFirstResponder];
     [self performSegueWithIdentifier:@"connect" sender:self];
     return YES;
-}
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState
-                     animations:^{ self.view.frame = CGRectOffset(self.view.frame, 0, -80); } completion:nil];
-}
-
-
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
-    [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState
-                     animations:^{ self.view.frame = CGRectOffset(self.view.frame, 0, 80); } completion:nil];
 }
 
 -(BOOL) shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
@@ -61,6 +51,47 @@
 
 - (IBAction)tap:(UITapGestureRecognizer *)sender {
     [self.username resignFirstResponder];
+}
+
+// Call this method somewhere in your view controller setup code.
+- (void)registerForKeyboardNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardDidShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillBeHidden:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+    
+}
+
+// Called when the UIKeyboardDidShowNotification is sent.
+- (void)keyboardWasShown:(NSNotification*) aNotification
+{
+    NSDictionary* info = [aNotification userInfo];
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    // UIEdgeInsetMake(top, left, bottom, right)
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
+    self.scrollView.contentInset = contentInsets;
+    
+    // If active text field is hidden by keyboard, scroll it so it's visible
+    CGRect aRect = self.view.frame;
+    aRect.size.height -= kbSize.height;
+    
+    if (!CGRectContainsPoint(aRect, self.btnConnect.frame.origin) ) {
+        // setting animated to yes will not show the connect button
+        [self.scrollView scrollRectToVisible:self.btnConnect.frame animated:NO];
+    }
+}
+
+// Called when the UIKeyboardWillHideNotification is sent
+- (void)keyboardWillBeHidden:(NSNotification*) aNotification
+{
+    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    self.scrollView.contentInset = contentInsets;
+    self.scrollView.scrollIndicatorInsets = contentInsets;
 }
 
 @end

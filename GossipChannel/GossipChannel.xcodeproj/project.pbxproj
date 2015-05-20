@@ -7,152 +7,119 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3A021EB01917528E0018C135 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A021EAF1917528E0018C135 /* Foundation.framework */; };
-		3A021EB21917528E0018C135 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A021EB11917528E0018C135 /* CoreGraphics.framework */; };
-		3A021EB41917528E0018C135 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A021EB31917528E0018C135 /* UIKit.framework */; };
-		3A021EBA1917528E0018C135 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3A021EB81917528E0018C135 /* InfoPlist.strings */; };
-		3A021EBC1917528E0018C135 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A021EBB1917528E0018C135 /* main.m */; };
-		3A021EC01917528E0018C135 /* GossipAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A021EBF1917528E0018C135 /* GossipAppDelegate.m */; };
-		3A021EC31917528E0018C135 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A021EC11917528E0018C135 /* Main.storyboard */; };
-		3A021EC61917528E0018C135 /* GossipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A021EC51917528E0018C135 /* GossipViewController.m */; };
-		3A021EC81917528E0018C135 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A021EC71917528E0018C135 /* Images.xcassets */; };
-		3A021ECF1917528E0018C135 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A021ECE1917528E0018C135 /* XCTest.framework */; };
-		3A021ED01917528E0018C135 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A021EAF1917528E0018C135 /* Foundation.framework */; };
-		3A021ED11917528E0018C135 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A021EB31917528E0018C135 /* UIKit.framework */; };
-		3A021ED91917528E0018C135 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3A021ED71917528E0018C135 /* InfoPlist.strings */; };
-		3A021EDB1917528E0018C135 /* GossipChannelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A021EDA1917528E0018C135 /* GossipChannelTests.m */; };
-		3A021EE619175E080018C135 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A021EE519175E080018C135 /* ChatViewController.m */; };
+		3A5041211B0A4F3300EF1309 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5041201B0A4F3300EF1309 /* main.m */; };
+		3A5041241B0A4F3300EF1309 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5041231B0A4F3300EF1309 /* AppDelegate.m */; };
+		3A5041271B0A4F3300EF1309 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5041261B0A4F3300EF1309 /* ViewController.m */; };
+		3A50412A1B0A4F3300EF1309 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A5041281B0A4F3300EF1309 /* Main.storyboard */; };
+		3A50412C1B0A4F3300EF1309 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A50412B1B0A4F3300EF1309 /* Images.xcassets */; };
+		3A50412F1B0A4F3300EF1309 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A50412D1B0A4F3300EF1309 /* LaunchScreen.xib */; };
+		3A50413B1B0A4F3300EF1309 /* GossipChannelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A50413A1B0A4F3300EF1309 /* GossipChannelTests.m */; };
+		3A5041461B0A573500EF1309 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5041451B0A573500EF1309 /* ChatViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3A021ED21917528E0018C135 /* PBXContainerItemProxy */ = {
+		3A5041351B0A4F3300EF1309 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 3A021EA41917528D0018C135 /* Project object */;
+			containerPortal = 3A5041131B0A4F3200EF1309 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 3A021EAB1917528D0018C135;
+			remoteGlobalIDString = 3A50411A1B0A4F3300EF1309;
 			remoteInfo = GossipChannel;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3A021EAC1917528E0018C135 /* GossipChannel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GossipChannel.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		3A021EAF1917528E0018C135 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		3A021EB11917528E0018C135 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		3A021EB31917528E0018C135 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		3A021EB71917528E0018C135 /* GossipChannel-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GossipChannel-Info.plist"; sourceTree = "<group>"; };
-		3A021EB91917528E0018C135 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		3A021EBB1917528E0018C135 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		3A021EBD1917528E0018C135 /* GossipChannel-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GossipChannel-Prefix.pch"; sourceTree = "<group>"; };
-		3A021EBE1917528E0018C135 /* GossipAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GossipAppDelegate.h; sourceTree = "<group>"; };
-		3A021EBF1917528E0018C135 /* GossipAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GossipAppDelegate.m; sourceTree = "<group>"; };
-		3A021EC21917528E0018C135 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		3A021EC41917528E0018C135 /* GossipViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GossipViewController.h; sourceTree = "<group>"; };
-		3A021EC51917528E0018C135 /* GossipViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GossipViewController.m; sourceTree = "<group>"; };
-		3A021EC71917528E0018C135 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		3A021ECD1917528E0018C135 /* GossipChannelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GossipChannelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3A021ECE1917528E0018C135 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		3A021ED61917528E0018C135 /* GossipChannelTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GossipChannelTests-Info.plist"; sourceTree = "<group>"; };
-		3A021ED81917528E0018C135 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		3A021EDA1917528E0018C135 /* GossipChannelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GossipChannelTests.m; sourceTree = "<group>"; };
-		3A021EE419175E080018C135 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
-		3A021EE519175E080018C135 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
+		3A50411B1B0A4F3300EF1309 /* GossipChannel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GossipChannel.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A50411F1B0A4F3300EF1309 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3A5041201B0A4F3300EF1309 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3A5041221B0A4F3300EF1309 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		3A5041231B0A4F3300EF1309 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		3A5041251B0A4F3300EF1309 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		3A5041261B0A4F3300EF1309 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		3A5041291B0A4F3300EF1309 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3A50412B1B0A4F3300EF1309 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		3A50412E1B0A4F3300EF1309 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		3A5041341B0A4F3300EF1309 /* GossipChannelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GossipChannelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A5041391B0A4F3300EF1309 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3A50413A1B0A4F3300EF1309 /* GossipChannelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GossipChannelTests.m; sourceTree = "<group>"; };
+		3A5041441B0A573500EF1309 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
+		3A5041451B0A573500EF1309 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		3A021EA91917528D0018C135 /* Frameworks */ = {
+		3A5041181B0A4F3300EF1309 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A021EB21917528E0018C135 /* CoreGraphics.framework in Frameworks */,
-				3A021EB41917528E0018C135 /* UIKit.framework in Frameworks */,
-				3A021EB01917528E0018C135 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3A021ECA1917528E0018C135 /* Frameworks */ = {
+		3A5041311B0A4F3300EF1309 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A021ECF1917528E0018C135 /* XCTest.framework in Frameworks */,
-				3A021ED11917528E0018C135 /* UIKit.framework in Frameworks */,
-				3A021ED01917528E0018C135 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3A021EA31917528D0018C135 = {
+		3A5041121B0A4F3200EF1309 = {
 			isa = PBXGroup;
 			children = (
-				3A021EB51917528E0018C135 /* GossipChannel */,
-				3A021ED41917528E0018C135 /* GossipChannelTests */,
-				3A021EAE1917528E0018C135 /* Frameworks */,
-				3A021EAD1917528E0018C135 /* Products */,
+				3A50411D1B0A4F3300EF1309 /* GossipChannel */,
+				3A5041371B0A4F3300EF1309 /* GossipChannelTests */,
+				3A50411C1B0A4F3300EF1309 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		3A021EAD1917528E0018C135 /* Products */ = {
+		3A50411C1B0A4F3300EF1309 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3A021EAC1917528E0018C135 /* GossipChannel.app */,
-				3A021ECD1917528E0018C135 /* GossipChannelTests.xctest */,
+				3A50411B1B0A4F3300EF1309 /* GossipChannel.app */,
+				3A5041341B0A4F3300EF1309 /* GossipChannelTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		3A021EAE1917528E0018C135 /* Frameworks */ = {
+		3A50411D1B0A4F3300EF1309 /* GossipChannel */ = {
 			isa = PBXGroup;
 			children = (
-				3A021EAF1917528E0018C135 /* Foundation.framework */,
-				3A021EB11917528E0018C135 /* CoreGraphics.framework */,
-				3A021EB31917528E0018C135 /* UIKit.framework */,
-				3A021ECE1917528E0018C135 /* XCTest.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		3A021EB51917528E0018C135 /* GossipChannel */ = {
-			isa = PBXGroup;
-			children = (
-				3A021EBE1917528E0018C135 /* GossipAppDelegate.h */,
-				3A021EBF1917528E0018C135 /* GossipAppDelegate.m */,
-				3A021EC11917528E0018C135 /* Main.storyboard */,
-				3A021EC41917528E0018C135 /* GossipViewController.h */,
-				3A021EC51917528E0018C135 /* GossipViewController.m */,
-				3A021EE419175E080018C135 /* ChatViewController.h */,
-				3A021EE519175E080018C135 /* ChatViewController.m */,
-				3A021EC71917528E0018C135 /* Images.xcassets */,
-				3A021EB61917528E0018C135 /* Supporting Files */,
+				3A5041221B0A4F3300EF1309 /* AppDelegate.h */,
+				3A5041231B0A4F3300EF1309 /* AppDelegate.m */,
+				3A5041251B0A4F3300EF1309 /* ViewController.h */,
+				3A5041261B0A4F3300EF1309 /* ViewController.m */,
+				3A5041281B0A4F3300EF1309 /* Main.storyboard */,
+				3A5041441B0A573500EF1309 /* ChatViewController.h */,
+				3A5041451B0A573500EF1309 /* ChatViewController.m */,
+				3A50412B1B0A4F3300EF1309 /* Images.xcassets */,
+				3A50412D1B0A4F3300EF1309 /* LaunchScreen.xib */,
+				3A50411E1B0A4F3300EF1309 /* Supporting Files */,
 			);
 			path = GossipChannel;
 			sourceTree = "<group>";
 		};
-		3A021EB61917528E0018C135 /* Supporting Files */ = {
+		3A50411E1B0A4F3300EF1309 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				3A021EB71917528E0018C135 /* GossipChannel-Info.plist */,
-				3A021EB81917528E0018C135 /* InfoPlist.strings */,
-				3A021EBB1917528E0018C135 /* main.m */,
-				3A021EBD1917528E0018C135 /* GossipChannel-Prefix.pch */,
+				3A50411F1B0A4F3300EF1309 /* Info.plist */,
+				3A5041201B0A4F3300EF1309 /* main.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		3A021ED41917528E0018C135 /* GossipChannelTests */ = {
+		3A5041371B0A4F3300EF1309 /* GossipChannelTests */ = {
 			isa = PBXGroup;
 			children = (
-				3A021EDA1917528E0018C135 /* GossipChannelTests.m */,
-				3A021ED51917528E0018C135 /* Supporting Files */,
+				3A50413A1B0A4F3300EF1309 /* GossipChannelTests.m */,
+				3A5041381B0A4F3300EF1309 /* Supporting Files */,
 			);
 			path = GossipChannelTests;
 			sourceTree = "<group>";
 		};
-		3A021ED51917528E0018C135 /* Supporting Files */ = {
+		3A5041381B0A4F3300EF1309 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				3A021ED61917528E0018C135 /* GossipChannelTests-Info.plist */,
-				3A021ED71917528E0018C135 /* InfoPlist.strings */,
+				3A5041391B0A4F3300EF1309 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -160,13 +127,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3A021EAB1917528D0018C135 /* GossipChannel */ = {
+		3A50411A1B0A4F3300EF1309 /* GossipChannel */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3A021EDE1917528E0018C135 /* Build configuration list for PBXNativeTarget "GossipChannel" */;
+			buildConfigurationList = 3A50413E1B0A4F3300EF1309 /* Build configuration list for PBXNativeTarget "GossipChannel" */;
 			buildPhases = (
-				3A021EA81917528D0018C135 /* Sources */,
-				3A021EA91917528D0018C135 /* Frameworks */,
-				3A021EAA1917528D0018C135 /* Resources */,
+				3A5041171B0A4F3300EF1309 /* Sources */,
+				3A5041181B0A4F3300EF1309 /* Frameworks */,
+				3A5041191B0A4F3300EF1309 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -174,43 +141,46 @@
 			);
 			name = GossipChannel;
 			productName = GossipChannel;
-			productReference = 3A021EAC1917528E0018C135 /* GossipChannel.app */;
+			productReference = 3A50411B1B0A4F3300EF1309 /* GossipChannel.app */;
 			productType = "com.apple.product-type.application";
 		};
-		3A021ECC1917528E0018C135 /* GossipChannelTests */ = {
+		3A5041331B0A4F3300EF1309 /* GossipChannelTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3A021EE11917528E0018C135 /* Build configuration list for PBXNativeTarget "GossipChannelTests" */;
+			buildConfigurationList = 3A5041411B0A4F3300EF1309 /* Build configuration list for PBXNativeTarget "GossipChannelTests" */;
 			buildPhases = (
-				3A021EC91917528E0018C135 /* Sources */,
-				3A021ECA1917528E0018C135 /* Frameworks */,
-				3A021ECB1917528E0018C135 /* Resources */,
+				3A5041301B0A4F3300EF1309 /* Sources */,
+				3A5041311B0A4F3300EF1309 /* Frameworks */,
+				3A5041321B0A4F3300EF1309 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				3A021ED31917528E0018C135 /* PBXTargetDependency */,
+				3A5041361B0A4F3300EF1309 /* PBXTargetDependency */,
 			);
 			name = GossipChannelTests;
 			productName = GossipChannelTests;
-			productReference = 3A021ECD1917528E0018C135 /* GossipChannelTests.xctest */;
+			productReference = 3A5041341B0A4F3300EF1309 /* GossipChannelTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		3A021EA41917528D0018C135 /* Project object */ = {
+		3A5041131B0A4F3200EF1309 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				CLASSPREFIX = Gossip;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "National Cheng Kung University";
 				TargetAttributes = {
-					3A021ECC1917528E0018C135 = {
-						TestTargetID = 3A021EAB1917528D0018C135;
+					3A50411A1B0A4F3300EF1309 = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
+					3A5041331B0A4F3300EF1309 = {
+						CreatedOnToolsVersion = 6.3.1;
+						TestTargetID = 3A50411A1B0A4F3300EF1309;
 					};
 				};
 			};
-			buildConfigurationList = 3A021EA71917528D0018C135 /* Build configuration list for PBXProject "GossipChannel" */;
+			buildConfigurationList = 3A5041161B0A4F3300EF1309 /* Build configuration list for PBXProject "GossipChannel" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -218,97 +188,88 @@
 				en,
 				Base,
 			);
-			mainGroup = 3A021EA31917528D0018C135;
-			productRefGroup = 3A021EAD1917528E0018C135 /* Products */;
+			mainGroup = 3A5041121B0A4F3200EF1309;
+			productRefGroup = 3A50411C1B0A4F3300EF1309 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3A021EAB1917528D0018C135 /* GossipChannel */,
-				3A021ECC1917528E0018C135 /* GossipChannelTests */,
+				3A50411A1B0A4F3300EF1309 /* GossipChannel */,
+				3A5041331B0A4F3300EF1309 /* GossipChannelTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		3A021EAA1917528D0018C135 /* Resources */ = {
+		3A5041191B0A4F3300EF1309 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A021EC81917528E0018C135 /* Images.xcassets in Resources */,
-				3A021EBA1917528E0018C135 /* InfoPlist.strings in Resources */,
-				3A021EC31917528E0018C135 /* Main.storyboard in Resources */,
+				3A50412A1B0A4F3300EF1309 /* Main.storyboard in Resources */,
+				3A50412F1B0A4F3300EF1309 /* LaunchScreen.xib in Resources */,
+				3A50412C1B0A4F3300EF1309 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3A021ECB1917528E0018C135 /* Resources */ = {
+		3A5041321B0A4F3300EF1309 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A021ED91917528E0018C135 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		3A021EA81917528D0018C135 /* Sources */ = {
+		3A5041171B0A4F3300EF1309 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A021EBC1917528E0018C135 /* main.m in Sources */,
-				3A021EC61917528E0018C135 /* GossipViewController.m in Sources */,
-				3A021EE619175E080018C135 /* ChatViewController.m in Sources */,
-				3A021EC01917528E0018C135 /* GossipAppDelegate.m in Sources */,
+				3A5041271B0A4F3300EF1309 /* ViewController.m in Sources */,
+				3A5041241B0A4F3300EF1309 /* AppDelegate.m in Sources */,
+				3A5041461B0A573500EF1309 /* ChatViewController.m in Sources */,
+				3A5041211B0A4F3300EF1309 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3A021EC91917528E0018C135 /* Sources */ = {
+		3A5041301B0A4F3300EF1309 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A021EDB1917528E0018C135 /* GossipChannelTests.m in Sources */,
+				3A50413B1B0A4F3300EF1309 /* GossipChannelTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3A021ED31917528E0018C135 /* PBXTargetDependency */ = {
+		3A5041361B0A4F3300EF1309 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 3A021EAB1917528D0018C135 /* GossipChannel */;
-			targetProxy = 3A021ED21917528E0018C135 /* PBXContainerItemProxy */;
+			target = 3A50411A1B0A4F3300EF1309 /* GossipChannel */;
+			targetProxy = 3A5041351B0A4F3300EF1309 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		3A021EB81917528E0018C135 /* InfoPlist.strings */ = {
+		3A5041281B0A4F3300EF1309 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				3A021EB91917528E0018C135 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		3A021EC11917528E0018C135 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3A021EC21917528E0018C135 /* Base */,
+				3A5041291B0A4F3300EF1309 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		3A021ED71917528E0018C135 /* InfoPlist.strings */ = {
+		3A50412D1B0A4F3300EF1309 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				3A021ED81917528E0018C135 /* en */,
+				3A50412E1B0A4F3300EF1309 /* Base */,
 			);
-			name = InfoPlist.strings;
+			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		3A021EDC1917528E0018C135 /* Debug */ = {
+		3A50413C1B0A4F3300EF1309 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -323,11 +284,15 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -340,13 +305,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
-		3A021EDD1917528E0018C135 /* Release */ = {
+		3A50413D1B0A4F3300EF1309 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -361,122 +327,111 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		3A021EDF1917528E0018C135 /* Debug */ = {
+		3A50413F1B0A4F3300EF1309 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "GossipChannel/GossipChannel-Prefix.pch";
-				INFOPLIST_FILE = "GossipChannel/GossipChannel-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				INFOPLIST_FILE = GossipChannel/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
-		3A021EE01917528E0018C135 /* Release */ = {
+		3A5041401B0A4F3300EF1309 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "GossipChannel/GossipChannel-Prefix.pch";
-				INFOPLIST_FILE = "GossipChannel/GossipChannel-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				INFOPLIST_FILE = GossipChannel/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
 		};
-		3A021EE21917528E0018C135 /* Debug */ = {
+		3A5041421B0A4F3300EF1309 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/GossipChannel.app/GossipChannel";
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "GossipChannel/GossipChannel-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "GossipChannelTests/GossipChannelTests-Info.plist";
+				INFOPLIST_FILE = GossipChannelTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GossipChannel.app/GossipChannel";
 			};
 			name = Debug;
 		};
-		3A021EE31917528E0018C135 /* Release */ = {
+		3A5041431B0A4F3300EF1309 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/GossipChannel.app/GossipChannel";
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "GossipChannel/GossipChannel-Prefix.pch";
-				INFOPLIST_FILE = "GossipChannelTests/GossipChannelTests-Info.plist";
+				INFOPLIST_FILE = GossipChannelTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GossipChannel.app/GossipChannel";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3A021EA71917528D0018C135 /* Build configuration list for PBXProject "GossipChannel" */ = {
+		3A5041161B0A4F3300EF1309 /* Build configuration list for PBXProject "GossipChannel" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3A021EDC1917528E0018C135 /* Debug */,
-				3A021EDD1917528E0018C135 /* Release */,
+				3A50413C1B0A4F3300EF1309 /* Debug */,
+				3A50413D1B0A4F3300EF1309 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3A021EDE1917528E0018C135 /* Build configuration list for PBXNativeTarget "GossipChannel" */ = {
+		3A50413E1B0A4F3300EF1309 /* Build configuration list for PBXNativeTarget "GossipChannel" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3A021EDF1917528E0018C135 /* Debug */,
-				3A021EE01917528E0018C135 /* Release */,
+				3A50413F1B0A4F3300EF1309 /* Debug */,
+				3A5041401B0A4F3300EF1309 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
-		3A021EE11917528E0018C135 /* Build configuration list for PBXNativeTarget "GossipChannelTests" */ = {
+		3A5041411B0A4F3300EF1309 /* Build configuration list for PBXNativeTarget "GossipChannelTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3A021EE21917528E0018C135 /* Debug */,
-				3A021EE31917528E0018C135 /* Release */,
+				3A5041421B0A4F3300EF1309 /* Debug */,
+				3A5041431B0A4F3300EF1309 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 3A021EA41917528D0018C135 /* Project object */;
+	rootObject = 3A5041131B0A4F3200EF1309 /* Project object */;
 }

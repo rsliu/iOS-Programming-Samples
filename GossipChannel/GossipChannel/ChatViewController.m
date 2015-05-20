@@ -2,94 +2,108 @@
 //  ChatViewController.m
 //  GossipChannel
 //
-//  Created by Ren-Shiou Liu on 5/5/14.
-//  Copyright (c) 2014 National Cheng Kung University. All rights reserved.
+//  Created by Ren-Shiou Liu on 5/19/15.
+//  Copyright (c) 2015 National Cheng Kung University. All rights reserved.
 //
 
 #import "ChatViewController.h"
 
-@interface ChatViewController()
-@property (nonatomic) CFHostRef host;
-@property (strong, nonatomic) NSInputStream *iStream;
-@property (strong, nonatomic) NSOutputStream *oStream;
+@interface ChatViewController () <UITextFieldDelegate, NSStreamDelegate>
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (strong, nonatomic) NSThread *thread;
+@property (nonatomic) NSInputStream *iStream;
+@property (nonatomic) NSOutputStream *oStream;
+@property (strong, nonatomic) NSOperationQueue *queue;
 @end
 
 @implementation ChatViewController
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.textField.delegate = self;
+    [self registerForKeyboardNotifications];
+    self.textField.enabled = false;
+    [self.queue addOperationWithBlock:^{
+        [self setupConnection];
+    }];
+}
+
+-(NSOperationQueue*) queue {
+    if (!_queue) {
+        _queue = [[NSOperationQueue alloc] init];
+    }
+    
+    return _queue;
+}
+
 - (void) setupConnection
 {
-    CFReadStreamRef readStream = NULL;
-    CFWriteStreamRef writeStream = NULL;
     if (self.address) {
-        CFStreamCreatePairWithSocketToHost(kCFAllocatorDefault,
-                                           (__bridge CFStringRef) self.address,
-                                           (UInt32) self.port,
-                                           &readStream,
-                                           &writeStream);
+        NSInputStream* iStream = nil;
+        NSOutputStream* oStream = nil;
+
+        [NSStream getStreamsToHostWithName:self.address port:self.port inputStream:&iStream outputStream:&oStream];
         
-        if (readStream && writeStream) {
-            CFReadStreamSetProperty(readStream, kCFStreamPropertyShouldCloseNativeSocket, kCFBooleanTrue);
-            CFWriteStreamSetProperty(writeStream, kCFStreamPropertyShouldCloseNativeSocket, kCFBooleanTrue);
-            
-            self.iStream = (__bridge NSInputStream *)readStream;
+        if (iStream && oStream) {
+            self.iStream = iStream;
             self.iStream.delegate = self;
-            [self.iStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+            [self.iStream scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
             [self.iStream open];
-            self.oStream = (__bridge NSOutputStream *)writeStream;
+            
+            self.oStream = oStream;
             self.oStream.delegate = self;
-            [self.oStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+            [self.oStream scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
             [self.oStream open];
         }
-
-        while ([[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]]);
     }
 }
+
+#define MAX_BUFFER_SIZE 1024
 
 // Stream event handler
 -(void)stream:(NSStream *)aStream handleEvent:(NSStreamEvent)eventCode
 {
-    uint8_t buf[1024];
-    NSInteger len = 0;
-    
     switch (eventCode) {
         case NSStreamEventHasBytesAvailable:
-            {
-                // Data received
-                len = [(NSInputStream *) aStream read:buf maxLength:1024];
-                if (len) {
-                    NSMutableString *text = [[NSMutableString alloc] initWithString:self.textView.text];
-                    NSString *newMessage = [[NSString alloc] initWithBytes:buf length:len encoding:NSASCIIStringEncoding];
-                    [text appendString:newMessage];
-                    
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        self.textView.text = text;
-                        NSRange bottom = NSMakeRange(self.textView.text.length -1, 1);
-                        [self.textView scrollRangeToVisible:bottom];
-                    });
+        {
+            // Data available for read
+            [self.queue addOperationWithBlock:^{
+                NSInteger length;
+                uint8_t buffer[MAX_BUFFER_SIZE];
+                NSMutableString *text = [[NSMutableString alloc] initWithString:self.textView.text];
+                
+                while([(NSInputStream *) aStream hasBytesAvailable]) {
+                    length = [(NSInputStream *) aStream read:buffer maxLength:MAX_BUFFER_SIZE];
+                    NSString *string = [[NSString alloc] initWithBytes:buffer length:length encoding:NSASCIIStringEncoding];
+                    [text appendString:string];
                 }
-            }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.textView.text = text;
+                    NSRange bottom = NSMakeRange(self.textView.text.length -1, 1);
+                    [self.textView scrollRangeToVisible:bottom];
+                });
+            }];
+        }
             break;
             
         case NSStreamEventErrorOccurred:
-            {
-                // Error
-                NSLog(@"Cannot connect to the server");
-                [self.navigationController popViewControllerAnimated:YES];
-            }
+        {
+            // Error
+            NSLog(@"Cannot connect to the server");
+            [self.navigationController popViewControllerAnimated:YES];
+        }
             break;
             
         case NSStreamEventOpenCompleted:
-            {
-                if (aStream == self.oStream) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        self.textField.enabled = YES;
-                    });
-                }
+        {
+            if (aStream == self.oStream) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.textField.enabled = YES;
+                });
             }
+        }
             break;
             
         case NSStreamEventEndEncountered:
@@ -98,12 +112,12 @@
             break;
             
         case NSStreamEventHasSpaceAvailable:
-            {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    self.textField.text = @"";
-                    self.textField.enabled = YES;
-                });
-            }
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.textField.text = @"";
+                self.textField.enabled = YES;
+            });
+        }
             break;
             
         case NSStreamEventNone:
@@ -111,49 +125,16 @@
     }
 }
 
-- (void) sendMessage
-{
-    if (self.oStream) {
-        NSString* messageToSend = [[NSString alloc] initWithFormat:@"%@: %@\r\n", self.username, self.textField.text];
-        NSData *data = [[NSData alloc] initWithData:[messageToSend dataUsingEncoding:NSASCIIStringEncoding]];
-        [self.oStream write:[data bytes] maxLength:[data length]];
-    }
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    self.textField.enabled = NO;
-    self.textField.delegate = self;
-    [self registerForKeyboardNotifications];
-    self.thread = [[NSThread alloc] initWithTarget:self selector:@selector(setupConnection) object:nil];
-    [self.thread start];
-}
-
--(void) viewWillDisappear:(BOOL)animated
-{
-    [self.iStream close];
-    [self.oStream close];
-}
-
-// To make text field dismissable
--(BOOL) textFieldShouldReturn:(UITextField *)textField
-{
-    self.textField.enabled = NO;
-    [self performSelector:@selector(sendMessage) onThread:self.thread withObject:nil waitUntilDone:false];
-    return YES;
-}
-
 // Call this method somewhere in your view controller setup code.
 - (void)registerForKeyboardNotifications
 {
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWasShown:)
-                                                 name:UIKeyboardDidShowNotification object:nil];
+                    selector:@selector(keyboardWasShown:)
+                    name:UIKeyboardDidShowNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillBeHidden:)
-                                                 name:UIKeyboardWillHideNotification object:nil];
+                    selector:@selector(keyboardWillBeHidden:)
+                    name:UIKeyboardWillHideNotification object:nil];
     
 }
 
@@ -181,4 +162,46 @@
     self.scrollView.contentInset = contentInsets;
     self.scrollView.scrollIndicatorInsets = contentInsets;
 }
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+// To make text field dismissable
+-(BOOL) textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    self.textField.enabled = NO;
+    [self.queue addOperationWithBlock:^{
+        [self sendMessage];
+    }];
+    return YES;
+}
+
+- (void) sendMessage
+{
+    if (self.oStream) {
+        NSString* messageToSend = [[NSString alloc] initWithFormat:@"%@: %@\r\n", self.username, self.textField.text];
+        NSData *data = [[NSData alloc] initWithData:[messageToSend dataUsingEncoding:NSASCIIStringEncoding]];
+        [self.oStream write:[data bytes] maxLength:[data length]];
+    }
+}
+
+-(void) viewWillDisappear:(BOOL)animated
+{
+    [self.iStream close];
+    [self.oStream close];
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
 @end

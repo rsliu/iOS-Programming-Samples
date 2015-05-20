@@ -1,36 +1,23 @@
 //
-//  GossipViewController.m
+//  ViewController.m
 //  GossipChannel
 //
-//  Created by Ren-Shiou Liu on 5/5/14.
-//  Copyright (c) 2014 National Cheng Kung University. All rights reserved.
+//  Created by Ren-Shiou Liu on 5/19/15.
+//  Copyright (c) 2015 National Cheng Kung University. All rights reserved.
 //
 
-#import "GossipViewController.h"
+#import "ViewController.h"
 #import "ChatViewController.h"
 
-@interface GossipViewController ()
+@interface ViewController () <UITextFieldDelegate>
+
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UITextField *username;
 @property (weak, nonatomic) IBOutlet UIButton *btnConnect;
+
 @end
 
-@implementation GossipViewController
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    self.username.delegate = self;
-    [self registerForKeyboardNotifications];
-}
-
-// To make text field dismissable
--(BOOL) textFieldShouldReturn:(UITextField *)textField
-{
-    //[textField resignFirstResponder];
-    [self performSegueWithIdentifier:@"connect" sender:self];
-    return YES;
-}
+@implementation ViewController
 
 -(BOOL) shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
@@ -46,11 +33,29 @@
             cmvc.address = [[NSString alloc] initWithFormat:@"127.0.0.1"];
             cmvc.port = 8888;
         }
+        [self.username resignFirstResponder];
     }
 }
 
-- (IBAction)tap:(UITapGestureRecognizer *)sender {
-    [self.username resignFirstResponder];
+
+// To make text field dismissable
+-(BOOL) textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    [self performSegueWithIdentifier:@"connect" sender:self];
+    return YES;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self registerForKeyboardNotifications];
+    self.username.delegate = self;
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 // Call this method somewhere in your view controller setup code.
@@ -92,6 +97,7 @@
     UIEdgeInsets contentInsets = UIEdgeInsetsZero;
     self.scrollView.contentInset = contentInsets;
     self.scrollView.scrollIndicatorInsets = contentInsets;
+    [self.scrollView setContentOffset:CGPointZero animated:NO];
 }
 
 @end

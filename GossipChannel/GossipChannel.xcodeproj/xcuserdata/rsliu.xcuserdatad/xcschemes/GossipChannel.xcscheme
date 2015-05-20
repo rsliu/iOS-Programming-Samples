@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0510"
+   LastUpgradeVersion = "0630"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,23 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3A021EAB1917528D0018C135"
+               BlueprintIdentifier = "3A50411A1B0A4F3300EF1309"
                BuildableName = "GossipChannel.app"
                BlueprintName = "GossipChannel"
+               ReferencedContainer = "container:GossipChannel.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "3A5041331B0A4F3300EF1309"
+               BuildableName = "GossipChannelTests.xctest"
+               BlueprintName = "GossipChannelTests"
                ReferencedContainer = "container:GossipChannel.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,7 +46,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3A021ECC1917528E0018C135"
+               BlueprintIdentifier = "3A5041331B0A4F3300EF1309"
                BuildableName = "GossipChannelTests.xctest"
                BlueprintName = "GossipChannelTests"
                ReferencedContainer = "container:GossipChannel.xcodeproj">
@@ -42,7 +56,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3A021EAB1917528D0018C135"
+            BlueprintIdentifier = "3A50411A1B0A4F3300EF1309"
             BuildableName = "GossipChannel.app"
             BlueprintName = "GossipChannel"
             ReferencedContainer = "container:GossipChannel.xcodeproj">
@@ -58,10 +72,11 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3A021EAB1917528D0018C135"
+            BlueprintIdentifier = "3A50411A1B0A4F3300EF1309"
             BuildableName = "GossipChannel.app"
             BlueprintName = "GossipChannel"
             ReferencedContainer = "container:GossipChannel.xcodeproj">
@@ -76,10 +91,11 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3A021EAB1917528D0018C135"
+            BlueprintIdentifier = "3A50411A1B0A4F3300EF1309"
             BuildableName = "GossipChannel.app"
             BlueprintName = "GossipChannel"
             ReferencedContainer = "container:GossipChannel.xcodeproj">
